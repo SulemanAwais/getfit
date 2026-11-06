@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0F1012">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Abs Before Ramadan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +67,6 @@ svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-wid
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes burn{50%{opacity:.6}}
 .ring .hand{stroke:#fff;stroke-width:2;stroke-linecap:round}
-.ring .star{fill:#FFC24A}
 #fx{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);pointer-events:none}
 .center{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
 .center>div{text-align:center;width:60%;display:grid;gap:3px;justify-items:center;pointer-events:auto;text-shadow:0 1px 12px rgba(0,0,0,.35)}
@@ -189,6 +181,9 @@ svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-wid
 .mt td:first-child{font-weight:600;white-space:normal}
 .log{margin-top:12px}.log summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)}
 .up{color:var(--ok)}.dn{color:var(--miss)}
+.db .dbh{display:flex;align-items:center;gap:14px}.gr{font:800 54px/.8 var(--f-d)}
+.dbs{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:6px;font-size:13.5px}.dbs>b{font-size:12px;color:var(--muted);font-weight:700}
+.dbr{display:flex;justify-content:space-between;gap:10px}.dbr span{min-width:0}.dbr b{text-align:right}.fx{border-top-color:var(--h2)}
 .strict{font:700 10px var(--f-b);font-style:normal;color:var(--miss);border:1px solid var(--miss);border-radius:5px;padding:0 4px}
 
 /* tabs */
@@ -252,7 +247,6 @@ textarea{font-size:11.5px;height:100px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.ring .draw{stroke-dashoffset:0}}
 </style>
 
-</head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="i-salah" viewBox="0 0 24 24"><path d="M5 21V11a7 7 0 0 1 14 0v10M3 21h18M12 4V2M9 21v-4a3 3 0 0 1 6 0v4"/></symbol>
  <symbol id="i-gym" viewBox="0 0 24 24"><path d="M6 7v10M3 9.5v5M18 7v10M21 9.5v5M6 12h12"/></symbol>
@@ -274,29 +268,42 @@ const SES={push:'Push',pull:'Pull',legs:'Legs',recovery:'Active recovery',should
 const STRICT=['legs','recovery'],LIFTS=['push','pull','legs','recovery','shoulders','arms'];
 const DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const PLAN=[['2026-11-04',70.4],['2026-11-11',68.9],['2026-11-18',67.9],['2026-11-25',66.9],['2026-12-02',66.1],['2026-12-09',65.3],['2026-12-16',64.6],['2026-12-23',65.6],['2026-12-30',64],['2027-01-06',63.4],['2027-01-13',62.8],['2027-01-20',62.2],['2027-01-27',61.6],['2027-02-03',61],['2027-02-07',60.7],['2027-02-14',60.2],['2027-02-21',59.8],['2027-02-28',59.4],['2027-03-07',59]];
-const ALL=[0,1,2,3,4,5,6],WK=[1,2,3,4,5];
+const ALL=[0,1,2,3,4,5,6],WK=[1,2,3,4,5],SWITCH='2026-11-07';
 /* rule: grace = markable until 1 h after close; strict = on time only. masjid: only | pref */
-function defaults(){return{startDate:'2026-11-05',targets:{sleep:7,steps:11000},
+function defaults(){return{startDate:'2026-11-05',targets:{sleep:7,steps:11000,study:3},v:2,
   windows:[
-   {id:'fajr',label:'Fajr',start:'05:10',end:'05:45',kind:'salah',w:3,rule:'grace',masjid:'only',days:ALL,qaza:[0],stepMin:600,stepMax:1500},
-   {id:'gym',label:'Leave for gym',start:'06:00',end:'06:45',kind:'gym',w:2,rule:'grace',days:WK},
-   {id:'study',label:'Start studying by 8:15',start:'08:00',end:'08:15',kind:'work',w:2,rule:'grace',days:WK},
-   {id:'work',label:'Start work',start:'10:00',end:'10:15',kind:'work',w:1,rule:'grace',days:WK,stepMin:2500,stepMax:5500},
-   {id:'zuhr',label:'Zuhr',start:'12:15',end:'12:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:[0,1,2,3,4,6],stepMin:600,stepMax:1500},
+   {id:'fajr',label:'Fajr',start:'05:10',end:'05:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL,qaza:[0]},
+   {id:'study1',label:'Start study block',start:'05:45',end:'06:00',kind:'work',w:2,rule:'grace',days:WK,from:SWITCH},
+   {id:'gym',label:'Leave for gym',start:'06:00',end:'06:45',kind:'gym',w:2,rule:'grace',days:WK,until:'2026-11-06'},
+   {id:'gym2',label:'Leave for gym',start:'07:15',end:'07:35',kind:'gym',w:2,rule:'grace',days:WK,from:SWITCH},
+   {id:'study',label:'Start studying by 8:15',start:'08:00',end:'08:15',kind:'work',w:2,rule:'grace',days:WK,until:'2026-11-06'},
+   {id:'nap',label:'Up from nap',start:'09:30',end:'09:50',kind:'sleep',w:1,rule:'grace',days:WK,from:SWITCH},
+   {id:'work',label:'Start work',start:'10:00',end:'10:15',kind:'work',w:1,rule:'grace',days:WK},
+   {id:'zuhr',label:'Zuhr',start:'12:15',end:'12:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:[0,1,2,3,4,6]},
    {id:'jleave',label:'Post status, leave for Juma',start:'12:50',end:'13:00',kind:'work',w:1,rule:'grace',days:[5]},
-   {id:'juma',label:'Juma',start:'13:00',end:'13:45',kind:'salah',w:3,rule:'strict',masjid:'only',days:[5],stepMin:600,stepMax:1500},
-   {id:'asr',label:'Asr',start:'15:15',end:'15:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL,stepMin:600,stepMax:1500},
-   {id:'maghrib',label:'Maghrib',start:'17:15',end:'17:40',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL,stepMin:600,stepMax:1500},
-   {id:'isha',label:'Isha',start:'18:40',end:'19:15',kind:'salah',w:3,rule:'strict',masjid:'only',days:ALL,stepMin:600,stepMax:1500},
+   {id:'juma',label:'Juma',start:'13:00',end:'13:45',kind:'salah',w:3,rule:'strict',masjid:'only',days:[5]},
+   {id:'asr',label:'Asr',start:'15:15',end:'15:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL},
+   {id:'maghrib',label:'Maghrib',start:'17:15',end:'17:40',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL},
+   {id:'isha',label:'Isha',start:'18:40',end:'19:15',kind:'salah',w:3,rule:'strict',masjid:'only',days:ALL},
    {id:'wend',label:'Stop work',start:'19:30',end:'19:45',kind:'work',w:1,rule:'grace',days:WK},
-   {id:'bed',label:'Phone down, into bed',start:'21:15',end:'21:45',kind:'sleep',w:2,rule:'grace',days:[0,1,2,3,4]}],
+   {id:'bed',label:'Phone down, into bed',start:'21:15',end:'21:30',kind:'sleep',w:2,rule:'grace',days:[0,1,2,3,4]}],
   split:{1:'push',2:'pull',3:'legs',4:'recovery',5:'shoulders',6:'arms',0:'rest'},absDays:[3,6],
   measures:[{id:'sh',name:'Shoulders',short:'Shoulders',dir:'up'},{id:'ch',name:'Chest',short:'Chest',dir:'up'},{id:'rb',name:'Right bicep, flexed',short:'R bicep',dir:'up'},{id:'lb',name:'Left bicep, flexed',short:'L bicep',dir:'up'},
    {id:'wa',name:'Waist',short:'Waist',dir:'down'},{id:'hi',name:'Hips',short:'Hips',dir:'down'},{id:'rt',name:'Right thigh',short:'R thigh',dir:'down'},{id:'lt',name:'Left thigh',short:'L thigh',dir:'down'}],checkinBy:'09:00',
   overrides:{'2026-11-05':'push','2026-11-06':'pull','2026-11-07':'legs','2026-11-08':'rest'}}}
 
 let S;
-function load(){let r=null;try{r=localStorage.getItem(KEY)}catch(e){}try{S=r?JSON.parse(r):null}catch(e){S=null}if(!S||!S.settings)S={settings:defaults(),days:{}};if(!S.settings.windows.some(w=>w.id==='study'))S.settings.windows.push(defaults().windows.find(w=>w.id==='study'));const D=defaults();if(!S.settings.measures||S.settings.measures.some(m=>['bir','bif','stom'].includes(m.id)))S.settings.measures=D.measures;S.settings.checkinBy=S.settings.checkinBy||D.checkinBy}
+function load(){let r=null;try{r=localStorage.getItem(KEY)}catch(e){}try{S=r?JSON.parse(r):null}catch(e){S=null}if(!S||!S.settings)S={settings:defaults(),days:{}};const D=defaults();migrate(D);if(!S.settings.measures||S.settings.measures.some(m=>['bir','bif','stom'].includes(m.id)))S.settings.measures=D.measures;S.settings.checkinBy=S.settings.checkinBy||D.checkinBy}
+/* v2: new morning schedule from SWITCH. Old windows get an end date; past marks keep the close time they were graded against */
+function migrate(D){const g=S.settings,W=g.windows,f=id=>W.find(w=>w.id===id),dw=id=>({...D.windows.find(w=>w.id===id)});if(g.v>=2)return;
+  for(const k in S.days){const sl=S.days[k].slots||{};for(const id in sl){const w=f(id);if(w&&sl[id].t!=null&&!sl[id].end)sl[id].end=w.end}delete S.days[k].stepAt}
+  W.forEach(w=>{delete w.stepMin;delete w.stepMax});
+  if(f('fajr'))f('fajr').masjid='pref';
+  if(!f('study'))W.push(dw('study'));f('study').until='2026-11-06';
+  if(f('gym'))f('gym').until='2026-11-06';
+  for(const id of['study1','gym2','nap'])if(!f(id))W.push(dw(id));
+  if(f('bed')){f('bed').start='21:15';f('bed').end='21:30'}
+  g.targets.study=g.targets.study||3;g.v=2;save()}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
 /* ---- Pakistan time, whatever the phone's zone ---- */
@@ -324,20 +331,17 @@ const plan=k=>S.settings.overrides[k]||S.settings.split[dow(k)];
 const absP=k=>S.settings.overrides[k]?S.settings.overrides[k]==='legs':S.settings.absDays.includes(dow(k));
 const phase=k=>k<S.settings.startDate?'pre-cut':k>='2026-12-17'&&k<='2026-12-23'?'deficit break':k>=RAMADAN&&k<=END?'ramadan':k>END?'done':'cut';
 function planW(k){if(k<=PLAN[0][0])return PLAN[0][1];for(let i=1;i<PLAN.length;i++)if(k<=PLAN[i][0]){const[a,x]=PLAN[i-1],[b,y]=PLAN[i];return x+(y-x)*diff(a,k)/diff(a,b)}return GOAL_W}
-const winsFor=k=>S.settings.windows.filter(w=>w.days.includes(dow(k))).sort((a,b)=>toMin(a.start)-toMin(b.start));
+const winsFor=k=>S.settings.windows.filter(w=>w.days.includes(dow(k))&&(!w.from||k>=w.from)&&(!w.until||k<=w.until)).sort((a,b)=>toMin(a.start)-toMin(b.start));
 const lockAt=w=>toMin(w.end)+(w.rule==='strict'?0:60);
 
 /* window state: ontime late home(prayed elsewhere) qaza missed | open(closed, still markable) qazaable todo */
-function st(k,w){const s=peek(k)?.slots?.[w.id],T=tk(),e=toMin(w.end);
+function st(k,w){const s=peek(k)?.slots?.[w.id],T=tk(),e=toMin(s?.end||w.end);
   if(k<S.settings.startDate)return'todo';
   if(s){if(s.how==='skip')return'missed';if(s.how==='qaza')return'qaza';if(s.how==='else')return'home';return s.t<=e?'ontime':'late'}
   if(k>T)return'todo';if(k<T)return'missed';
   const n=now();if(n<=e)return'todo';if(n<=lockAt(w))return'open';
   if(w.qaza?.includes(dow(k)))return'qazaable';return'missed'}
 const PTS={ontime:1,late:.6,home:.5,qaza:.5};
-const ranged=w=>false;
-function chunk(k,w){const d=peek(k),r=d?.stepAt?.[w.id];if(r==null)return null;let p=0;for(const x of winsFor(k)){if(x.id===w.id)break;if(d.stepAt[x.id]!=null)p=d.stepAt[x.id]}const dl=r-p;return{dl,star:dl>=w.stepMin&&dl<=w.stepMax}}
-const stars=k=>winsFor(k).filter(w=>chunk(k,w)?.star).length;
 const closed=k=>k<tk()||(k===tk()&&now()>=22*60);
 
 /* Thursday check-in: weight, every measurement, photos taken, all by checkinBy. Missing it zeroes the day. */
@@ -346,18 +350,19 @@ function ciDone(k){const d=peek(k);return!!d&&d.weight!=null&&!!d.photos&&S.sett
 function ciStamp(k){const d=day(k);if(ciDone(k)){if(d.ci==null)d.ci=k===tk()?now():9999}else delete d.ci}
 const ciOk=k=>(peek(k)?.ci??9999)<=toMin(S.settings.checkinBy);
 const ciVoid=k=>isCI(k)&&!ciOk(k)&&(k<tk()||(k===tk()&&now()>toMin(S.settings.checkinBy)));
-/* day points: weighted windows, clean meals, snack, water, training, abs, sleep, step stars */
-function score(k){const d=peek(k)||{slots:{}},ws=winsFor(k),T=S.settings.targets,c=closed(k);let e=0,p=0;
-  if(ciVoid(k))return{e:0,p:1,f:0,void:true};
-  for(const w of ws){p+=w.w;e+=(PTS[st(k,w)]||0)*w.w}
-  p+=3;e+=['bf','lu','di'].filter(x=>d.meals?.[x]).length;
-  p+=1;e+=d.snack==='over'?-1:d.snack?1:0;
-  p+=1.5;e+=d.water==='4'?1.5:d.water==='35'?1:c?-1:0;
-  const pl=plan(k);if(pl!=='rest'){const w=STRICT.includes(pl)?2:1.5;p+=w;if(d.trained)e+=w}
-  if(absP(k)){p+=2;if(d.abs)e+=2}
-  p+=1;if((d.sleep||0)>=T.sleep)e+=1;
-  p+=1;if((d.steps||0)>=T.steps)e+=1;
-  return{e:Math.max(0,e),p,f:Math.max(0,e)/p}}
+/* day points, item by item: weighted windows, meals, snack, water, session, abs, sleep, steps, study (from SWITCH) */
+function parts(k){const d=peek(k)||{slots:{}},T=S.settings.targets,c=closed(k),L=[],P=(id,name,p,e)=>L.push({id,name,p,e});
+  for(const w of winsFor(k))P(w.id,w.label,w.w,(PTS[st(k,w)]||0)*w.w);
+  P('meals','Clean meals',3,['bf','lu','di'].filter(x=>d.meals?.[x]).length);
+  P('snack','Snack',1,d.snack==='over'?-1:d.snack?1:0);
+  P('water','Water',1.5,d.water==='4'?1.5:d.water==='35'?1:c?-1:0);
+  const pl=plan(k);if(pl!=='rest'){const w=STRICT.includes(pl)?2:1.5;P('train',SES[pl]+' session',w,d.trained?w:0)}
+  if(absP(k))P('abs','Abs',2,d.abs?2:0);
+  P('sleep','Sleep',1,(d.sleep||0)>=T.sleep?1:0);
+  P('steps','Steps',1,(d.steps||0)>=T.steps?1:0);
+  if(k>=SWITCH)P('studyh','Study hours',3,Math.min((d.study||0)/(T.study||3),1)*3);
+  return L}
+function score(k){if(ciVoid(k))return{e:0,p:1,f:0,void:true};let e=0,p=0;for(const x of parts(k)){p+=x.p;e+=x.e}e=Math.max(0,e);return{e,p,f:e/p}}
 const lvl=f=>f<.35?'x':f<.55?1:f<.7?2:f<.85?3:4;
 function streak(){const T=tk();let k=add(T,-1),n=0;while(k>=S.settings.startDate){if(!peek(k)||score(k).f<.6)break;n++;k=add(k,-1)}if(peek(T)&&score(T).f>=.6)n++;return n}
 
@@ -374,7 +379,7 @@ function ring(k,c){const ws=winsFor(k),n=ws.length,R=124,step=Math.PI*2/n,g=.05;
   ws.forEach((w,i)=>{const a0=-Math.PI/2+i*step+g/2,a1=a0+step-g,x=st(k,w),isC=c&&c.m==='now'&&c.w.id===w.id,m=(a0+a1)/2;
     if(isC)emitAt=[160+R*Math.cos(m),160+R*Math.sin(m),m];
     s+=`<path class="seg ${x}${isC?' cur':''}${first?' draw':''}" style="--l:${(R*(a1-a0)).toFixed(0)};--d:${(i*.05).toFixed(2)}s" d="${arc(R,a0,a1)}"/>`;
-    if(chunk(k,w)?.star)s+=`<path class="star" transform="translate(${(160+(R+20)*Math.cos(m)).toFixed(1)} ${(160+(R+20)*Math.sin(m)).toFixed(1)})" d="M0-6l1.8 3.7 4 .6-2.9 2.8.7 4L0 3.2l-3.6 1.9.7-4-2.9-2.8 4-.6z"/>`});
+});
   if(k===tk()&&n){const t=now();let i=ws.findIndex(w=>t<=toMin(w.end));if(i<0)i=n;let f=0;if(i<n){const a=toMin(ws[i].start),b=toMin(ws[i].end);f=t<a?0:Math.min(1,(t-a)/Math.max(1,b-a))}
     const a=-Math.PI/2+(i+f)*step;s+=`<line class="hand" x1="${160+(R-19)*Math.cos(a)}" y1="${160+(R-19)*Math.sin(a)}" x2="${160+(R+19)*Math.cos(a)}" y2="${160+(R+19)*Math.sin(a)}"/>`}
   return s+'</svg>'}
@@ -400,6 +405,7 @@ function today(){const k=vk,T=tk(),isT=k===T,pre=k<S.settings.startDate,d=pre?{s
   else h+=`<span class="k">${DOW[dow(k)].toUpperCase()}</span><span class="w">${Math.round(sc.f*100)}</span><span class="t">day score</span><button class="go" data-act="today" style="font-size:13px;padding:8px 16px">Back to today</button>`;
   h+=`</div></div></div><div class="score">${pre?'<div><b>0</b>points so far</div><div><b>'+plan(S.settings.startDate).replace(/^./,x=>x.toUpperCase())+'</b>day 1 session</div>':`<div><b>${Math.round(sc.f*100)}</b>score</div><div><b>${done}/${ws.length}</b>windows</div><div><b>${kf(d.steps||0)}</b>steps</div>${wn>=0?`<div><b>${Math.floor(wn/7)+1}</b>week</div>`:''}`}</div></div><div class="fc" id="jface">${jFace(jT(isT?T:k))}</div></div></div><div class="dots"><button data-face="0" class="${face?'':'on'}" aria-label="Today"></button><button data-face="1" class="${face?'on':''}" aria-label="Journey"></button></div>${SKY}</section>`;
 
+  if(!pre&&(k<T||n>=21*60))h+=debrief(k);
   const open=isT?ws.filter(w=>['open','qazaable'].includes(st(k,w))):[];
   if(open.length)h+=`<div class="catch"><p>${open.length} closed without a mark. Fill before ${open.length>1?'they lock':'it locks'}.</p>${open.map(w=>{const s=st(k,w);
     return`<div class="it"><span>${esc(w.label)}<small>${s==='qazaable'?'Sunday: qaza counts half':`locks in ${left(lockAt(w)-n)}`}</small></span><div>${s==='qazaable'?`<button class="sm pri" data-qaza="${w.id}">Prayed qaza</button>`:`<button class="sm pri" data-mark="${w.id}">Did it</button>`}<button class="sm" data-skip="${w.id}">Missed</button></div></div>`}).join('')}</div>`;
@@ -411,9 +417,8 @@ function today(){const k=vk,T=tk(),isT=k===T,pre=k<S.settings.startDate,d=pre?{s
   if(pre){h+=`<h2>Before the cut</h2><div class="card"><b>Nothing to mark today.</b><div class="hint">Points, windows and the chain start ${fd(S.settings.startDate)}. Steps today are a free warm-up.</div></div>`;app.innerHTML=h;first=false;fxBind();return}
   if(isCI(k))h+=`<h2>Thursday check-in <em>by ${hm(S.settings.checkinBy).t} am</em></h2>${ciCard(k,d)}`;
   h+=`<h2>${isT?'Windows':fd(k)} <em><button class="sm" data-act="prev">‹ Prev</button>${isT?'':' <button class="sm" data-act="next">Next ›</button>'}</em></h2><div class="board">`;
-  for(const w of ws){const s=st(k,w),a=hm(w.start),b=hm(w.end),sl=d.slots[w.id],isC=c&&c.m==='now'&&c.w.id===w.id,ch=chunk(k,w);
-    const rg=ranged(w)?`, ${kf(w.stepMin)}–${kf(w.stepMax)} steps`:'';
-    const sub=sl&&sl.how!=='skip'?`${sl.how==='else'?'prayed elsewhere':sl.how==='qaza'?'qaza':'at '+ms(sl.t)}${ch?(ch.star?`, <b class="ok-t">+${ch.dl.toLocaleString()} ★</b>`:`, +${ch.dl.toLocaleString()} steps`):''}`:`until ${b.t} ${b.ap}${rg}`;
+  for(const w of ws){const s=st(k,w),a=hm(w.start),b=hm(w.end),sl=d.slots[w.id],isC=c&&c.m==='now'&&c.w.id===w.id;
+    const sub=sl&&sl.how!=='skip'?`${sl.how==='else'?'prayed elsewhere':sl.how==='qaza'?'qaza':'at '+ms(sl.t)}`:`until ${b.t} ${b.ap}`;
     const lab=isC?'Done':{ontime:'Done',late:'Late',home:'Elsewhere',qaza:'Qaza',missed:'Missed',open:'Fill',qazaable:'Qaza',todo:'Mark'}[s];
     const lockd=s==='missed'&&!sl;
     h+=`<div class="row ${w.kind}${isC?' cur':''}${s!=='todo'&&!isC?' past':''}"><div class="tm">${a.t}<small>${a.ap}</small></div>
@@ -429,6 +434,9 @@ function today(){const k=vk,T=tk(),isT=k===T,pre=k<S.settings.startDate,d=pre?{s
    ${pl!=='rest'?`<div class="btns" style="margin-top:10px"><button class="btn ${d.trained?'on':''}" data-train>${d.trained?SES[pl]+' done':'Mark '+SES[pl]+' done'}</button>${ab?`<button class="btn ${d.abs?'on':''}" data-abs>${d.abs?'Abs done':'Abs'}</button><i class="strict">no skip</i>`:''}</div>`:'<div class="hint">Walk, stretch, recover.</div>'}</div>
   <div class="two"><div class="card"><div class="hd"><b>${ic('steps')}Steps</b></div><div class="field"><input id="steps" type="number" inputmode="numeric" min="0" step="100" value="${d.steps??''}" placeholder="0"></div><div class="hint">${(d.steps||0)>=S.settings.targets.steps?'<span class="ok-t">target hit</span>':`target ${kf(S.settings.targets.steps)}, from Google Fit before bed`}</div></div>
    <div class="card"><div class="hd"><b>${ic('sleep')}Sleep</b></div><div class="field"><input id="sleep" type="number" inputmode="decimal" min="0" max="14" step="0.25" value="${d.sleep??''}" placeholder="0"><em>h</em></div><div class="hint">${d.sleep==null?`target ${S.settings.targets.sleep} h`:d.sleep>=S.settings.targets.sleep?'<span class="ok-t">on target</span>':'<span class="late-t">short</span>'}</div></div></div>
+  <div class="two">${k>=SWITCH?`<div class="card"><div class="hd"><b>${ic('work')}Study</b></div><div class="field"><input id="study" type="number" inputmode="decimal" min="0" max="16" step="0.25" value="${d.study??''}" placeholder="0"><em>h</em></div><div class="hint">${(d.study||0)>=S.settings.targets.study?'<span class="ok-t">target hit</span>':`target ${S.settings.targets.study} h, ${Math.round(Math.min((d.study||0)/S.settings.targets.study,1)*3*10)/10} of 3 pts`}</div></div>`:''}
+   ${isCI(k)?'':`<div class="card"><div class="hd"><b>${ic('scale')}Weight</b></div><div class="field"><input id="weight" type="number" inputmode="decimal" step="0.05" min="30" max="150" value="${d.weight??''}" placeholder="—"><em>kg</em></div><div class="hint">every morning, after the washroom</div></div>`}</div>
+  ${wTrend(k)?`<div class="card"><div class="hint" style="margin:0">${wVerdict(wTrend(k))}</div></div>`:''}
 </div>`;
   app.innerHTML=h;first=false;fxBind()}
 function ciCard(k,d){const ok=ciOk(k),v=ciVoid(k),done=ciDone(k);
@@ -437,6 +445,10 @@ function ciCard(k,d){const ok=ciOk(k),v=ciVoid(k),done=ciDone(k);
    ${S.settings.measures.map(m=>`<label>${esc(m.name)} (cm)<input id="m-${m.id}" data-meas="${m.id}" type="number" inputmode="decimal" step="0.1" value="${d.meas?.[m.id]??''}" placeholder="—"></label>`).join('')}</div>
    <div class="btns" style="margin-top:10px"><button class="btn ${d.photos?'on':''}" data-photos>${d.photos?'Photos taken':'Front, side, back photos taken'}</button></div>
    <div class="hint">plan for ${sd(k)}: <b>${planW(k).toFixed(1)} kg</b>${d.weight?wh(d.weight,planW(k)):''}. Photos stay in your gallery.</div></div>`}
+function wAvg(k){const v=[];for(let i=0;i<7;i++){const w=peek(add(k,-i))?.weight;if(w!=null)v.push(w)}return v.length?{a:v.reduce((s,x)=>s+x,0)/v.length,n:v.length}:null}
+function wTrend(k){const a=wAvg(k),b=wAvg(add(k,-7));return a?{a:a.a,n:a.n,d:b?a.a-b.a:null}:null}
+function wVerdict(t){if(!t)return'';if(t.d==null||t.n<3)return`7-day average <b>${t.a.toFixed(1)}</b> (${t.n} day${t.n>1?'s':''}). Verdict once a week of weigh-ins exists.`;
+  const d=(t.d>0?'+':'')+t.d.toFixed(1);return`7-day average <b>${t.a.toFixed(1)}</b>, ${d} kg vs last week: `+(t.d<=-.5?'<span class="ok-t">on track</span>':t.d<0?'<span class="late-t">too slow, tighten 150 kcal or add 2k steps</span>':'<span class="miss-t">average up. That is fat, fix the week</span>')}
 function wh(w,p){const g=w-p,s=(g>0?'+':'')+g.toFixed(1);return g<=.3?` <span class="ok-t">on track (${s})</span>`:g<=1?` <span class="late-t">${s} kg vs plan</span>`:` <span class="miss-t">${s} kg, about a week behind</span>`}
 
 function graph(){const s0=S.settings.startDate,f0=add(s0,-((dow(s0)+6)%7)),cols=Math.ceil((diff(f0,END)+1)/7),T=tk(),c=15,g=3,L=18,Tp=14;
@@ -449,6 +461,59 @@ function graph(){const s0=S.settings.startDate,f0=add(s0,-((dow(s0)+6)%7)),cols=
       if(k>T&&(ph==='deficit break'||ph==='ramadan'))s+=`<rect class="ph" x="${x+4}" y="${y+4}" width="${c-8}" height="${c-8}" rx="1.5"/>`}}
   return s+'</svg>'}
 
+/* ---------- debrief: rule-based, offline, read-only ---------- */
+const TIPS={ci:'Measure right after Fajr, before the study block. Tape and scale out the night before.',fajr:'Phone across the room, alarm 10 minutes earlier, wudu before checking anything.',study1:'Lay out the laptop and notes before bed so 5:45 needs no decisions.',
+ gym2:'Gym clothes by the door; leave at 7:15 even mid-topic.',gym:'Gym clothes by the door the night before.',nap:'Set the 9:45 alarm before lying down; sit up the moment it rings.',
+ work:'Breakfast ready the night before; laptop open at 10:10.',zuhr:'Wudu when the 12:10 alarm rings, not after the next message.',juma:'Post status at 12:50 and walk out; nothing else.',jleave:'Draft the status at 12:30 so 12:50 is one tap.',
+ asr:'Block Asr on your work calendar so nobody books over it.',maghrib:'Shoes by the door; leave at the alarm, not after the task.',isha:'Isha is on time only. Leave 10 minutes before jamaat.',
+ wend:'At the 7:30 alarm write tomorrow\'s first task, then close the laptop.',bed:'Charger outside the bedroom; phone goes there at 9:00.',study:'Protect the first study block.',
+ meals:'Cook or portion tomorrow\'s three meals tonight. No decisions when hungry.',snack:'Pre-portion tomorrow\'s snack; nothing else in reach.',water:'1 L before the gym, 1 L by Zuhr, 1 L by Maghrib.',
+ train:'The session is on the plan. Go even at half intensity; showing up is the habit.',abs:'Abs first, before the main session, so they never get skipped.',
+ sleep:'Lights out by 9:30. The nap does not replace the night.',steps:'Walk to every salah and take the long way back; add 20 minutes after Isha.',studyh:'Protect the evening block: 7:50 to 9:00, phone on silent.'};
+const grade=f=>f>=.85?'A':f>=.7?'B':f>=.6?'C':'D';
+function last7(k){const o=[];for(let i=0;i<7;i++){const x=add(k,-i);if(x<S.settings.startDate)break;if(peek(x))o.push(x)}return o}
+function patterns(k){const ds=last7(k),out=[],cnt={},app={};
+  for(const x of ds)for(const w of winsFor(x)){const s=st(x,w);if(['todo','open','qazaable'].includes(s))continue;app[w.id]=(app[w.id]||0)+1;if(s==='missed'||s==='late')cnt[w.id]=(cnt[w.id]||0)+1}
+  for(const id in cnt)if(cnt[id]>=3){const w=S.settings.windows.find(q=>q.id===id);out.push(`${w.label}: missed or late ${cnt[id]} of ${app[id]}`)}
+  const c=f=>ds.filter(f).length,D=x=>S.days[x],T=S.settings.targets;
+  const sn=c(x=>D(x).snack==='over');if(sn>=3)out.push(`Snack over plan ${sn} of ${ds.length} days`);
+  const wa=c(x=>!D(x).water&&closed(x));if(wa>=3)out.push(`Water under 3.5 L ${wa} of ${ds.length} days`);
+  const sd2=ds.filter(x=>x>=SWITCH),su=sd2.filter(x=>(D(x).study||0)<2).length;if(su>=3)out.push(`Study under 2 h ${su} of ${sd2.length} days`);
+  const sl=c(x=>(D(x).sleep||0)<T.sleep&&D(x).sleep!=null);if(sl>=3)out.push(`Short sleep ${sl} of ${ds.length} nights`);
+  for(const x of ds){const pl=plan(x);if(STRICT.includes(pl)&&!D(x).trained&&closed(x))out.push(`No-skip ${SES[pl]} missed on ${fd(x)}`);if(absP(x)&&!D(x).abs&&closed(x))out.push(`No-skip abs missed on ${fd(x)}`)}
+  return out}
+function pace(k){const j=jT(k),n=Math.max(1,Math.min(JFULL,diff(S.settings.startDate,k)+1)),exp=n/JFULL,ds=last7(k),a=ds.length?ds.reduce((s,x)=>s+score(x).f,0)/7:0;
+  const rem=(1-j.c)*JFULL*.75,dl=Math.max(1,diff(k,JEND)),need=Math.min(1,rem/dl);let eta=null;if(a>0)eta=add(k,Math.ceil(rem/a));
+  const behind=Math.round((exp-j.c)*JFULL);
+  return`Journey ${Math.round(j.c*100)}% vs ${Math.round(exp*100)}% expected${behind>0?`, <b class="miss-t">${behind} day${behind>1?'s':''} behind</b>`:behind<0?`, <b class="ok-t">${-behind} ahead</b>`:''}. `+
+   (j.c>=1?'All six filled.':a===0?'No scores this week yet.':eta<=JEND?`At this week's average (${Math.round(a*100)}), all six abs by <b>${sd(eta)}</b>.`:`At this week's average (${Math.round(a*100)}) all six fill by ${sd(eta)}, after Feb 7. <b class="miss-t">Average ${Math.round(need*100)}+ from here to make it.</b>`)}
+function fix(k){const tot={};for(const x of last7(k))for(const q of parts(x)){const lost=q.p-q.e;if(lost>0)tot[q.id]=(tot[q.id]||0)+lost}
+  const top=Object.entries(tot).sort((a,b)=>b[1]-a[1])[0];if(!top)return null;const w=S.settings.windows.find(q=>q.id===top[0]),name=w?w.label:(parts(k).find(q=>q.id===top[0])||{name:top[0]}).name;
+  return{name,lost:top[1],tip:TIPS[top[0]]||'Make it the first thing you protect tomorrow.'}}
+const ciFix=k=>last7(k).some(x=>ciVoid(x))?{name:'Thursday check-in',lost:0,tip:TIPS.ci}:null;
+function debrief(k){const sc=score(k),g=grade(sc.f),L=sc.void?[{name:`Thursday check-in, not done by ${hm(S.settings.checkinBy).t} am`,l:Math.max(0,parts(k).reduce((x,q)=>x+q.e,0))}]:parts(k).map(q=>({...q,l:q.p-q.e})).filter(q=>q.l>0).sort((a,b)=>b.l-a.l).slice(0,3),P=patterns(k),F=ciFix(k)||fix(k),sk=streak();
+  const col=g==='D'?'var(--miss)':g==='C'?'var(--late)':'var(--h2)',f1=x=>Math.round(x*10)/10;
+  return`<h2>${k===tk()?'Tonight\'s debrief':'Debrief'} <em>${fd(k)}</em></h2><div class="card db"><div class="dbh"><span class="gr" style="color:${col}">${g}</span><div><b>${sc.void?'Check-in missed: day zeroed':Math.round(sc.f*100)+' / 100'}</b><div class="hint" style="margin:0">${sc.void?'everything else logged today counts for nothing':`${f1(sc.e)} of ${f1(sc.p)} points`}${g==='A'?'. Clean day.':''}${[7,14,30,60].includes(sk)&&k===tk()?` ${sk}-day streak.`:''}${g==='D'?' Streak broken.':''}</div></div></div>
+   ${L.length?`<div class="dbs"><b>Cost you most</b>${L.map(q=>`<div class="dbr"><span>${esc(q.name)}</span><span class="miss-t">−${f1(q.l)}</span></div>`).join('')}</div>`:''}
+   ${P.length?`<div class="dbs"><b>Pattern this week</b>${P.slice(0,4).map(t=>`<div class="dbr"><span>${esc(t)}</span></div>`).join('')}</div>`:''}
+   <div class="dbs"><b>Journey pace</b><div class="dbr"><span>${pace(k)}</span></div>${wTrend(k)?`<div class="dbr"><span>${wVerdict(wTrend(k))}</span></div>`:''}</div>
+   ${F?`<div class="dbs fx"><b>Tomorrow's one fix: ${esc(F.name)}</b><div class="dbr"><span>${esc(F.tip)}</span></div><div class="hint" style="margin:2px 0 0">${F.lost?`cost you ${f1(F.lost)} points in the last 7 days`:'a missed check-in zeroes the whole day'}</div></div>`:''}</div>`}
+/* weekly report card: most recent completed Thursday to Wednesday */
+function report(){const T=tk();let we=add(T,-1);while(dow(we)!==3)we=add(we,-1);const ws=add(we,-6),s0=S.settings.startDate;
+  if(we<s0){let n=add(s0,0);while(dow(n)!==3)n=add(n,1);return`<h2>Weekly report card</h2><div class="card"><div class="hint" style="margin:0">First report card on ${fd(add(n,1))}, covering ${sd(s0)} to ${sd(n)}.</div></div>`}
+  const ks=[];for(let k=ws;k<=we;k=add(k,1))if(k>=s0)ks.push(k);
+  const sc=ks.map(k=>peek(k)?score(k).f:0),a=sc.reduce((x,y)=>x+y,0)/ks.length,d60=sc.filter(f=>f>=.6).length;
+  let sm=0,sa=0;const miss={},appl={};for(const k of ks)for(const w of winsFor(k)){const s=st(k,w);appl[w.id]=(appl[w.id]||0)+1;if(s==='missed'||s==='late')miss[w.id]=(miss[w.id]||0)+1;if(w.kind==='salah'){sa++;if(s==='ontime')sm++}}
+  const stu=ks.reduce((x,k)=>x+(peek(k)?.study||0),0),stuT=ks.filter(k=>k>=SWITCH).length*S.settings.targets.study;
+  let nd=0,np=0;for(const k of ks){const pl=plan(k);if(STRICT.includes(pl)){np++;if(peek(k)?.trained)nd++}if(absP(k)){np++;if(peek(k)?.abs)nd++}}
+  const wt=wTrend(we),weak=Object.entries(miss).map(([id,m])=>[id,m/appl[id]]).sort((x,y)=>y[1]-x[1]).slice(0,2);
+  const j=jT(we),exp=(diff(s0,we)+1)/JFULL,beh=Math.round((exp-j.c)*JFULL);
+  const v=beh<=0?(beh<0?`<b class="ok-t">Ahead by ${-beh} day${beh<-1?'s':''}</b>`:'<b class="ok-t">On pace</b>'):`<b class="miss-t">Behind by about ${beh} day${beh>1?'s':''}</b>`;
+  const row=(l,r)=>`<div class="dbr"><span>${l}</span><b>${r}</b></div>`;
+  return`<h2>Weekly report card <em>${sd(ws)} to ${sd(we)}</em></h2><div class="card db"><div class="dbh"><span class="gr" style="color:${a<.6?'var(--miss)':'var(--h2)'}">${grade(a)}</span><div><b>${Math.round(a*100)} average</b><div class="hint" style="margin:0">${v}</div></div></div><div class="dbs">
+   ${row('Days at 60+',`${d60} / ${ks.length}`)}${row('Salah at masjid, on time',`${sm} / ${sa}`)}${stuT?row('Study hours',`${Math.round(stu*10)/10} / ${stuT}`):''}${row('No-skip sessions',`${nd} / ${np}`)}
+   ${wt&&wt.d!=null?row('Weight, 7-day average',`${wt.a.toFixed(1)} kg (${wt.d>0?'+':''}${wt.d.toFixed(1)}), plan ${planW(we).toFixed(1)}`):''}
+   ${weak.length?row('Weakest windows',weak.map(([id,r])=>`${esc(S.settings.windows.find(w=>w.id===id).label)} ${Math.round(r*100)}%`).join(', ')):''}</div></div>`}
 /* ---------- motion: embers off the live arc, bursts on wins ---------- */
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let cv,cx,ps=[],raf=0,tick=0;
 function fxBind(){cv=document.getElementById('fx');if(!cv)return;const r=cv.getBoundingClientRect(),dp=Math.min(2,devicePixelRatio||1);cv.width=r.width*dp;cv.height=r.height*dp;cx=cv.getContext('2d');cx.setTransform(dp,0,0,dp,0,0);if(!RM&&!raf)raf=requestAnimationFrame(loop)}
@@ -466,24 +531,18 @@ function burst(id,big){try{navigator.vibrate?.(big?[20,50,20,50,40]:[15,40,25])}
 
 /* ---------- marking ---------- */
 const sheet=document.getElementById('sheet');let sf=null;
-function prevRead(k,w){let v=null;for(const x of winsFor(k)){if(x.id===w.id)break;const r=peek(k)?.stepAt?.[x.id];if(r!=null)v=r}return v}
-function ask(id,qaza){const w=S.settings.windows.find(x=>x.id===id),p=prevRead(vk,w)??0,sal=w.kind==='salah';sf={id,w,p};
+function ask(id,qaza){const w=S.settings.windows.find(x=>x.id===id),sal=w.kind==='salah';sf={id,w};
   const opts=qaza?[['qaza','Prayed qaza']]:sal?(w.masjid==='only'?[['done','Prayed at the masjid']]:[['done','At the masjid'],['else','Prayed elsewhere']]):[['done','Done']];
   sheet.innerHTML=`<div class="shc" role="dialog" aria-label="${esc(w.label)}"><div class="k">${esc(w.label)}</div>
    ${sal&&w.masjid==='only'&&!qaza?'<div class="q">Counts only when prayed at the masjid.</div>':''}
-   ${ranged(w)&&!qaza?`<div class="q">Steps on Google Fit right now</div><input id="shs" type="number" inputmode="numeric" min="0" placeholder="${p||0}"><div class="r" id="shr">Last reading ${p.toLocaleString()}. Star at +${kf(w.stepMin)} to +${kf(w.stepMax)}.</div>`:''}
    <div class="btns">${opts.map(([v,l],i)=>`<button class="btn ${i?'':'on'}" data-how="${v}">${l}</button>`).join('')}<button class="btn" data-how="cancel">Cancel</button></div></div>`;
-  sheet.hidden=false;setTimeout(()=>document.getElementById('shs')?.focus(),60)}
-sheet.addEventListener('input',e=>{if(e.target.id!=='shs')return;const{p,w}=sf,dl=+e.target.value-p,r=document.getElementById('shr');if(!e.target.value){r.textContent='';return}
-  r.innerHTML=dl<0?'<span class="miss-t">Lower than the last reading. Check Google Fit.</span>':dl>=w.stepMin&&dl<=w.stepMax?`<span class="ok-t">+${dl.toLocaleString()} ★ in range</span>`:`+${dl.toLocaleString()}, ${dl<w.stepMin?'under':'over'} the range`});
-sheet.addEventListener('click',e=>{const b=e.target.closest('[data-how]');if(!b&&e.target!==sheet)return;const how=b?.dataset.how||'cancel',f=sf,v=document.getElementById('shs')?.value;sheet.hidden=true;sf=null;if(how==='cancel')return;
-  commit(f.id,how,v?Math.max(0,Math.round(+v)):null)});
-function commit(id,how,read){const d=day(vk),w=S.settings.windows.find(x=>x.id===id),isT=vk===tk(),wasFull=winsFor(vk).every(x=>PTS[st(vk,x)]);
-  d.slots[id]=how==='skip'?{how}:{t:isT?now():toMin(w.end)+1,how};
-  if(read!=null){(d.stepAt||(d.stepAt={}))[id]=read;d.steps=Math.max(d.steps||0,read)}
+  sheet.hidden=false}
+sheet.addEventListener('click',e=>{const b=e.target.closest('[data-how]');if(!b&&e.target!==sheet)return;const how=b?.dataset.how||'cancel',f=sf;sheet.hidden=true;sf=null;if(how!=='cancel')commit(f.id,how)});
+function commit(id,how){const d=day(vk),w=S.settings.windows.find(x=>x.id===id),isT=vk===tk(),wasFull=winsFor(vk).every(x=>PTS[st(vk,x)]);
+  d.slots[id]=how==='skip'?{how}:{t:isT?now():toMin(w.end)+1,how,end:w.end};
   save();render();if(how==='skip'){toast('Logged as missed');return}
-  const full=!wasFull&&winsFor(vk).every(x=>PTS[st(vk,x)]),ch=chunk(vk,w),s=st(vk,w);
-  burst(id,full);toast(full?'Full ring. Every window done':ch?.star?`+${ch.dl.toLocaleString()} steps, star earned`:s==='ontime'?`+${w.w} points`:`+${(PTS[s]*w.w).toFixed(1).replace(/\.0$/,'')} points`)}
+  const full=!wasFull&&winsFor(vk).every(x=>PTS[st(vk,x)]),s=st(vk,w);
+  burst(id,full);toast(full?'Full ring. Every window done':s==='ontime'?`+${w.w} points`:`+${(PTS[s]*w.w).toFixed(1).replace(/\.0$/,'')} points`)}
 
 function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),1800)}
 document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;tab=b.dataset.tab;armed=false;if(tab==='today'){vk=tk();first=true}render();scrollTo(0,0)});
@@ -492,11 +551,11 @@ app.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return
   if(D.act==='prev'){vk=add(k,-1);return render()}
   if(D.act==='next'){if(k<tk())vk=add(k,1);return render()}
   if(D.act==='today'){vk=tk();return render()}
-  if(D.mark){const w=S.settings.windows.find(x=>x.id===D.mark);return w.kind==='salah'||ranged(w)?ask(D.mark):commit(D.mark,'done')}
+  if(D.mark){const w=S.settings.windows.find(x=>x.id===D.mark);return w.kind==='salah'?ask(D.mark):commit(D.mark,'done')}
   if(D.qaza)return ask(D.qaza,true);
   if(D.skip)return commit(D.skip,'skip');
-  if(D.tog){const d=day(k),w=S.settings.windows.find(x=>x.id===D.tog);if(d.slots[D.tog]){delete d.slots[D.tog];if(d.stepAt)delete d.stepAt[D.tog];save();toast('Unmarked');return render()}
-    if(st(k,w)==='qazaable')return ask(w.id,true);return w.kind==='salah'||ranged(w)?ask(w.id):commit(w.id,'done')}
+  if(D.tog){const d=day(k),w=S.settings.windows.find(x=>x.id===D.tog);if(d.slots[D.tog]){delete d.slots[D.tog];save();toast('Unmarked');return render()}
+    if(st(k,w)==='qazaable')return ask(w.id,true);return w.kind==='salah'?ask(w.id):commit(w.id,'done')}
   const d=day(k);
   if(D.meal){(d.meals||(d.meals={}))[D.meal]=!d.meals[D.meal];save();return render()}
   if(D.snack){d.snack=d.snack===D.snack?null:D.snack;save();return render()}
@@ -506,7 +565,7 @@ app.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return
   if('photos' in D){d.photos=!d.photos;ciStamp(k);save();render();if(ciDone(k))burst('',false);return}
   if(D.range){range=D.range==='all'?'all':+D.range;return render()}
   if(D.day){const w=S.settings.windows.find(x=>x.id===D.day),i=+D.dw;w.days=w.days.includes(i)?w.days.filter(x=>x!==i):[...w.days,i];save();return render()}
-  if('addwin' in D){S.settings.windows.push({id:'w'+Date.now().toString(36),label:'New window',start:'12:00',end:'12:30',kind:'work',w:1,rule:'grace',days:[...ALL],stepMin:0,stepMax:0});save();return render()}
+  if('addwin' in D){S.settings.windows.push({id:'w'+Date.now().toString(36),label:'New window',start:'12:00',end:'12:30',kind:'work',w:1,rule:'grace',days:[...ALL]});save();return render()}
   if(D.del){S.settings.windows=S.settings.windows.filter(w=>w.id!==D.del);save();toast('Window deleted');return render()}
   if(D.mdir){const m=S.settings.measures.find(x=>x.id===D.mdir);m.dir=m.dir==='up'?'down':'up';save();return render()}
   if(D.mdel){S.settings.measures=S.settings.measures.filter(x=>x.id!==D.mdel);save();return render()}
@@ -518,13 +577,14 @@ function restore(t){try{const o=JSON.parse(t);if(!o.settings||!o.days)throw 0;S=
 app.addEventListener('change',e=>{const t=e.target,k=vk,num=t.value===''?null:+t.value;
   if(t.id==='steps'){day(k).steps=num==null?null:Math.round(num);save();return render()}
   if(t.id==='sleep'){day(k).sleep=num;save();return render()}
+  if(t.id==='study'){day(k).study=num;save();return render()}
   if(t.id==='weight'){day(k).weight=num==null?null:Math.round(num*100)/100;ciStamp(k);save();return render()}
   if(t.dataset.meas){const d=day(k);(d.meas||(d.meas={}))[t.dataset.meas]=num;if(num==null)delete d.meas[t.dataset.meas];ciStamp(k);save();return render()}
   if(t.id==='startDate'&&t.value){S.settings.startDate=t.value;save();return}
   if(t.id==='ciby'&&t.value){S.settings.checkinBy=t.value;save();return}
   if(t.dataset.mf){const m=S.settings.measures.find(x=>x.id===t.closest('[data-mid]').dataset.mid);if(m){m.name=t.value;save()}return}
   if(t.id==='impf'&&t.files[0]){const r=new FileReader();r.onload=()=>restore(r.result);r.readAsText(t.files[0]);return}
-  const wr=t.closest('[data-wid]');if(wr&&t.dataset.f){const w=S.settings.windows.find(x=>x.id===wr.dataset.wid),f=t.dataset.f;let v=t.value;if(f==='stepMin'||f==='stepMax')v=Math.max(0,+v||0);if((f==='start'||f==='end')&&!v)return;
+  const wr=t.closest('[data-wid]');if(wr&&t.dataset.f){const w=S.settings.windows.find(x=>x.id===wr.dataset.wid),f=t.dataset.f;let v=t.value;if((f==='start'||f==='end')&&!v)return;
     w[f]=v;if(toMin(w.end)<toMin(w.start)){if(f==='start')w.end=w.start;else w.start=w.end}save();if(f!=='label')render();return}
   if(t.dataset.t){if(+t.value>0){S.settings.targets[t.dataset.t]=+t.value;save()}return}
   if(t.dataset.split!=null){S.settings.split[t.dataset.split]=t.value;save();return}
@@ -535,10 +595,10 @@ app.addEventListener('input',e=>{const t=e.target;if(t.dataset.f==='label'){cons
 const avg=a=>{const v=a.filter(x=>x!=null);return v.length?v.reduce((s,x)=>s+x,0)/v.length:null};
 function rk(){const T=tk(),n=range==='all'?diff(S.settings.startDate,T)+1:range,o=[];for(let i=n-1;i>=0;i--){const k=add(T,-i);if(k>=S.settings.startDate)o.push(k)}return o}
 function trends(){const ks=rk(),T=S.settings.targets;
-  let h=`<div class="title">Trends</div><div class="seg">${[[7,'7 days'],[14,'14 days'],[28,'28 days'],['all','All']].map(([v,l])=>`<button data-range="${v}" class="${range===v?'on':''}">${l}</button>`).join('')}</div>`;
+  let h=`<div class="title">Trends</div>${report()}<div class="seg">${[[7,'7 days'],[14,'14 days'],[28,'28 days'],['all','All']].map(([v,l])=>`<button data-range="${v}" class="${range===v?'on':''}">${l}</button>`).join('')}</div>`;
   if(!ks.length){app.innerHTML=h+`<p class="hint" style="margin:16px 4px">Day 1 is ${fd(S.settings.startDate)}. Trends fill in from there.</p>`+wcard([])+mtable();return}
   const lg=ks.filter(k=>peek(k)),sc=ks.map(k=>peek(k)?score(k).f*100:null),ST=ks.map(k=>peek(k)?.steps??null),SL=ks.map(k=>peek(k)?.sleep??null);
-  const lw=Object.keys(S.days).filter(k=>S.days[k].weight).sort().pop(),cw=lw?S.days[lw].weight:START_W;
+  const lw=Object.keys(S.days).filter(k=>S.days[k].weight).sort().pop(),cw=lw?wAvg(lw).a:START_W,SD=ks.map(k=>k>=SWITCH?peek(k)?.study??null:null);
   const meals=lg.reduce((a,k)=>a+['bf','lu','di'].filter(x=>S.days[k].meals?.[x]).length,0),water=lg.filter(k=>S.days[k].water).length;
   h+=`<h2>Summary <em>${sd(ks[0])} to ${sd(ks[ks.length-1])}</em></h2><div class="tiles">
    <div class="tile"><span>average score</span><b>${avg(sc)==null?'–':Math.round(avg(sc))}<small> / 100</small></b></div>
@@ -546,6 +606,7 @@ function trends(){const ks=rk(),T=S.settings.targets;
    <div class="tile"><span>clean meals</span><b>${meals}<small> / ${lg.length*3}</small></b></div>
    <div class="tile"><span>water 3.5 L+</span><b>${water}<small> / ${lg.length} days</small></b></div>
    <div class="tile"><span>average steps</span><b>${avg(ST)==null?'–':kf(Math.round(avg(ST)))}<small> / ${kf(T.steps)}</small></b></div>
+   <div class="tile"><span>average study</span><b>${avg(SD)==null?'–':avg(SD).toFixed(1)}<small> / ${T.study} h</small></b></div>
    <div class="tile"><span>days at step target</span><b>${lg.filter(k=>(S.days[k].steps||0)>=T.steps).length}<small> / ${lg.length}</small></b></div></div>`;
   h+=wcard(ks)+mtable()+`<h2>Day score</h2><div class="card">${bars(ks,sc,60,v=>Math.round(v))}</div>`;
   const C=[['ontime','var(--h2)','masjid, on time'],['late','var(--late)','late'],['home','var(--h1)','elsewhere'],['qaza','#B38BFA','qaza'],['missed','var(--miss)','missed']];
@@ -554,7 +615,7 @@ function trends(){const ks=rk(),T=S.settings.targets;
     for(const k of ks){if(!w.days.includes(dow(k)))continue;const s=st(k,w);cnt[s]=(cnt[s]||0)+1;if(!['todo','open','qazaable'].includes(s))n++}
     h+=`<div class="sal"><span>${esc(w.label)}</span><div class="stack">${n?C.map(([s,c])=>`<i style="width:${(cnt[s]||0)/n*100}%;background:${c}"></i>`).join(''):''}</div><span class="disp" style="text-align:right;font-size:18px">${cnt.ontime||0}/${n}</span></div>`}
   h+=`<div class="legend">${C.map(([,c,l])=>`<span><i style="background:${c}"></i>${l}</span>`).join('')}</div></div>`;
-  h+=`<h2>Training by week</h2><div class="card">${tgrid(ks)}</div><h2>Steps</h2><div class="card">${bars(ks,ST,T.steps,v=>kf(Math.round(v)))}</div><h2>Sleep</h2><div class="card">${bars(ks,SL,T.sleep,v=>v.toFixed(0)+'h')}</div>`;
+  h+=`<h2>Training by week</h2><div class="card">${tgrid(ks)}</div><h2>Study</h2><div class="card">${bars(ks,SD,T.study,v=>v.toFixed(1)+'h')}</div><h2>Steps</h2><div class="card">${bars(ks,ST,T.steps,v=>kf(Math.round(v)))}</div><h2>Sleep</h2><div class="card">${bars(ks,SL,T.sleep,v=>v.toFixed(0)+'h')}</div>`;
   app.innerHTML=h}
 function bars(ks,vals,tg,fmt){let lab=ks,v=vals;if(ks.length>42){lab=[];v=[];for(let i=0;i<ks.length;i+=7){lab.push(ks[i]);v.push(avg(vals.slice(i,i+7)))}}
   if(v.every(x=>x==null))return'<p class="hint">Nothing logged in this range yet.</p>';
@@ -568,11 +629,10 @@ function wcard(ks){const T=tk(),lo=ks.length&&range!=='all'?ks[0]:PLAN[0][0],h0=
   const W=340,H=160,pl=34,pr=10,pt=12,pb=20,cw=W-pl-pr,ch=H-pt-pb,sp=diff(lo,hi),pp=[];for(let i=0;i<=sp;i+=Math.max(1,Math.round(sp/40)))pp.push([add(lo,i),planW(add(lo,i))]);pp.push([hi,planW(hi)]);
   const all=[...pp,...pts].map(p=>p[1]),mn=Math.floor(Math.min(...all)-.5),mx=Math.ceil(Math.max(...all)+.5),X=k=>pl+diff(lo,k)/sp*cw,Y=w=>pt+ch-(w-mn)/(mx-mn)*ch,P=a=>a.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join('');
   let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Weight against plan">`;[mn,(mn+mx)/2,mx].forEach(g=>s+=`<line class="ax" x1="${pl}" x2="${W-pr}" y1="${Y(g)}" y2="${Y(g)}"/><text x="${pl-4}" y="${Y(g)+4}" text-anchor="end">${+g.toFixed(1)}</text>`);
-  s+=`<path d="${P(pp)}" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4"/>`;if(pts.length>1)s+=`<path d="${P(pts)}" fill="none" stroke="var(--h2)" stroke-width="2.5"/>`;
-  pts.forEach(p=>s+=`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="4" fill="var(--h2)"><title>${sd(p[0])}: ${p[1]} kg</title></circle>`);
+  s+=`<path d="${P(pp)}" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4"/>`;const av=pts.map(p=>[p[0],wAvg(p[0]).a]);pts.forEach(p=>s+=`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="2.5" fill="var(--h2)" opacity=".55"><title>${sd(p[0])}: ${p[1]} kg</title></circle>`);if(av.length>1)s+=`<path d="${P(av)}" fill="none" stroke="var(--h2)" stroke-width="2.5"/>`;
   if(T>=lo&&T<=hi)s+=`<line x1="${X(T)}" x2="${X(T)}" y1="${pt}" y2="${pt+ch}" stroke="var(--h2)" opacity=".35"/>`;
   s+=`<text x="${pl}" y="${H-4}">${sd(lo)}</text><text x="${W-pr}" y="${H-4}" text-anchor="end">${sd(hi)}</text></svg>`;const l=pts[pts.length-1];
-  return`<h2>Weight vs plan</h2><div class="card">${s}<div class="legend"><span><i style="background:var(--h2)"></i>weigh-ins</span><span><i style="background:var(--muted)"></i>plan to ${GOAL_W} kg</span></div><div class="hint">${l?`last: ${l[1]} kg on ${sd(l[0])}, plan ${planW(l[0]).toFixed(1)}${wh(l[1],planW(l[0]))}`:'No weigh-ins yet. Thursday mornings.'}</div></div>`}
+  return`<h2>Weight vs plan</h2><div class="card">${s}<div class="legend"><span><i style="background:var(--h2)"></i>7-day average, dots daily</span><span><i style="background:var(--muted)"></i>plan to ${GOAL_W} kg</span></div><div class="hint">${l?`7-day average ${wAvg(l[0]).a.toFixed(1)} kg on ${sd(l[0])}, plan ${planW(l[0]).toFixed(1)}${wh(wAvg(l[0]).a,planW(l[0]))}`:'No weigh-ins yet. Weigh every morning.'}</div></div>`}
 /* body: weight + measurements. Latest value, change vs each earlier Thursday, and the full dated log */
 function mtable(){const rows=[{id:'_w',name:'Body weight',short:'Weight',dir:'down',u:'kg'},...S.settings.measures];
   const val=(k,r)=>{const d=S.days[k];return r.id==='_w'?d.weight??null:d.meas?.[r.id]??null};
@@ -596,13 +656,13 @@ function tgrid(ks){const T=tk(),f=ks[0],s0=add(f,-((dow(f)+6)%7)),wks=[];for(let
 
 /* ---------- settings ---------- */
 function settings(){const s=S.settings,T=s.targets;let h=`<div class="title">Settings</div><h2>Windows <em>Pakistan time</em></h2><div class="card">`;
-  [...s.windows].sort((a,b)=>toMin(a.start)-toMin(b.start)).forEach(w=>{h+=`<div class="wedit" data-wid="${w.id}"><label>name<input id="wl-${w.id}" data-f="label" value="${esc(w.label)}"></label>
+  [...s.windows].filter(w=>!w.until||w.until>=tk()).sort((a,b)=>toMin(a.start)-toMin(b.start)).forEach(w=>{h+=`<div class="wedit" data-wid="${w.id}"><label>name<input id="wl-${w.id}" data-f="label" value="${esc(w.label)}"></label>
    <div class="r"><label>opens<input id="ws-${w.id}" data-f="start" type="time" value="${w.start}"></label><label>closes<input id="we-${w.id}" data-f="end" type="time" value="${w.end}"></label>
    <button class="x" data-del="${w.id}" aria-label="Delete ${esc(w.label)}">×</button></div>
    <div class="days">${[1,2,3,4,5,6,0].map(i=>`<button class="${w.days.includes(i)?'on':''}" data-day="${w.id}" data-dw="${i}">${DOW[i].slice(0,2)}</button>`).join('')}</div>
-   <div class="hint" style="margin:0">×${w.w} points, ${w.rule==='strict'?'on time only':'markable up to 1 hour after close'}${w.masjid==='only'?', masjid only':w.masjid==='pref'?', masjid preferred':''}${w.qaza?', Sunday qaza allowed':''}</div></div>`});
+   <div class="hint" style="margin:0">×${w.w} points, ${w.rule==='strict'?'on time only':'markable up to 1 hour after close'}${w.masjid==='only'?', masjid only':w.masjid==='pref'?', masjid preferred':''}${w.qaza?', Sunday qaza allowed':''}${w.from?`, from ${sd(w.from)}`:''}${w.until?`, until ${sd(w.until)}`:''}</div></div>`});
   h+=`<div class="btns" style="margin-top:12px"><button class="btn" data-addwin>Add window</button></div><div class="hint">Salah times move about 35 minutes by February. Update them on the 1st of each month.</div></div>
-  <h2>Targets</h2><div class="card set"><div class="two"><label>sleep (h)<input id="t-sleep" data-t="sleep" type="number" step="0.25" value="${T.sleep}"></label><label>steps<input id="t-steps" data-t="steps" type="number" step="500" value="${T.steps}"></label></div></div>
+  <h2>Targets</h2><div class="card set"><div class="two"><label>sleep (h)<input id="t-sleep" data-t="sleep" type="number" step="0.25" value="${T.sleep}"></label><label>steps<input id="t-steps" data-t="steps" type="number" step="500" value="${T.steps}"></label><label>study (h)<input id="t-study" data-t="study" type="number" step="0.25" value="${T.study||3}"></label></div></div>
   <h2>Training week</h2><div class="card set">${[1,2,3,4,5,6,0].map(i=>`<div class="split"><span>${DOW[i]}</span><select id="sp-${i}" data-split="${i}">${Object.entries(SES).map(([k,v])=>`<option value="${k}" ${s.split[i]===k?'selected':''}>${v}</option>`).join('')}</select><label class="ab"><input id="ab-${i}" type="checkbox" data-abd="${i}" ${s.absDays.includes(i)?'checked':''} style="width:auto">abs</label></div>`).join('')}
    <div class="hint">Restart week (5 to 8 Nov): Push, Pull, Legs + abs, rest.</div><label>cut start<input id="startDate" type="date" value="${s.startDate}"></label></div>
   <h2>Thursday measurements</h2><div class="card set">${s.measures.map(m=>`<div class="split" data-mid="${m.id}" style="grid-template-columns:1fr 92px 34px"><input id="mn-${m.id}" data-mf="name" value="${esc(m.name)}"><button class="sm" data-mdir="${m.id}">${m.dir==='up'?'goal: grow':'goal: shrink'}</button><button class="x" data-mdel="${m.id}" aria-label="Remove ${esc(m.name)}">×</button></div>`).join('')}
@@ -646,6 +706,6 @@ setInterval(()=>{if(tab==='today'&&sheet.hidden&&!document.activeElement?.matche
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&tab==='today'){vk=tk();render()}});
 addEventListener('resize',()=>{if(tab==='today')fxBind()});
 load();render();reveal();
-if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
 </script>
+
 </body></html>
