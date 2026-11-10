@@ -7,20 +7,20 @@
 **Commit to the routine. Ship the abs.**
 
 For busy professional Muslims who want to transform their body in 3 months and be in shape before Eid.<br>
-A 70 KB, zero-dependency PWA that builds the whole day around the five prayers, a full-time job and the gym, and turns it into a streak.
+An 87 KB, zero-dependency PWA that builds the whole day around the five prayers, a full-time job and the gym, and turns it into a streak.
 
 <br>
 
-![size](https://img.shields.io/badge/size-70_KB-FF6B35?style=flat-square&labelColor=0F1012)
+![size](https://img.shields.io/badge/size-87_KB-FF6B35?style=flat-square&labelColor=0F1012)
 ![deps](https://img.shields.io/badge/dependencies-0-FFC24A?style=flat-square&labelColor=0F1012)
 ![pwa](https://img.shields.io/badge/PWA-installable_·_offline-E8437A?style=flat-square&labelColor=0F1012)
 ![tz](https://img.shields.io/badge/runs_on-PKT-8F9297?style=flat-square&labelColor=0F1012)
 
 <br>
 
-<img src="assets/strip.png" width="100%" alt="The day ring at dusk, the journey torso, and the morning study window">
+<img src="assets/strip.png" width="100%" alt="Maghrib under a shader sunset, the journey torso, and the night ring">
 
-<sub>The day ring at dusk &nbsp;·&nbsp; the journey torso &nbsp;·&nbsp; an 8:05 am study window</sub>
+<sub>Maghrib at sunset &nbsp;·&nbsp; the journey torso &nbsp;·&nbsp; the ring at night</sub>
 
 </div>
 
@@ -35,8 +35,8 @@ You have a 9-to-6 job, five prayers to make at the masjid, and a body you want t
 A cut fails on the days you don't notice slipping. This makes every slip visible the same day.
 
 ```
-Nov 5 ─────────────── 95-day cut ─────────────── Feb 7 │ Ramadan ── Mar 7 │ Eid
-70.4 kg                                                │           59 kg  │ in shape
+Nov 10 ────────────── 90-day cut ─────────────── Feb 7 │ Ramadan ── Mar 7 │ Eid
+71.3 kg                                         ~61 kg │           59 kg  │ in shape
 ```
 
 <br>
@@ -48,19 +48,19 @@ Nov 5 ─────────────── 95-day cut ─────�
 <td width="50%" valign="top">
 
 ### A sky that keeps time
-The header follows **Pakistan time**, whatever the phone's zone says. Dawn at Fajr, blue at midday, gold in the afternoon, dusk at Maghrib, stars at night. The sun and moon cross over a masjid skyline whose windows light up after dark.
+The header is a live **WebGL shader** that follows Pakistan time, whatever the phone's zone says. The sun sits where it really is over Lahore, so dawn, noon, the Maghrib sunset and the night sky happen on screen when they happen outside. The moon shows its true phase, clouds drift, stars twinkle, and the masjid skyline lights its windows after dark. No WebGL? It falls back to a CSS sky.
 
 ### The day ring
-One arc per window. The live window burns and drifts embers; done windows glow orange; missed ones go red. A hand marks exactly where you are in the day.
+One arc per window, with the five prayers drawn thick because they anchor the day. The live window burns and drifts embers; done windows glow; missed ones go red. A hand marks exactly where you are in the day.
 
 </td>
 <td width="50%" valign="top">
 
 ### The journey
-Swipe the sky to see a torso that slims as the cut goes on: love handles shrink, the belly flattens, and **six abs fill one by one**, top pair first. Full at a 75 average over 95 days. Every morning it replays yesterday's points pouring in.
+Swipe the sky to see a torso that slims as the cut goes on: love handles shrink, the belly flattens, and **six abs fill with molten colour one by one**, top pair first. Full at a 75 average over 90 days. Every morning it replays yesterday's points pouring in.
 
-### Don't break the chain
-A contribution graph of the whole cut. Every day scoring 60+ extends the streak.
+### The moon chain
+Every day to Eid is a disc showing **that night's moon**, tinted by the day's score. Three dark moons count down to Ramadan. Every day scoring 60+ extends the streak.
 
 </td>
 </tr>
@@ -72,23 +72,25 @@ A contribution graph of the whole cut. Every day scoring 60+ extends the streak.
 
 | Window | Weight | Rule |
 |---|:-:|---|
-| Fajr | ×3 | Masjid only. Locks 1 h after close. Sunday allows qaza at half |
-| Leave for gym | ×2 | Mon–Fri |
-| Start studying by 8:15 | ×2 | Mon–Fri |
-| Start work by 10:15 | ×1 | Mon–Fri |
-| Zuhr · Asr · Maghrib | ×3 | Masjid full, elsewhere half. Lock after 1 h |
+| Fajr | ×3 | Masjid full, at home half. Locks 1 h after close. Sunday allows qaza at half |
+| Zuhr · Asr · Maghrib | ×3 | Masjid full, at home half. Lock after 1 h |
 | Juma | ×3 | Friday. Masjid only, on time only |
 | Isha | ×3 | Masjid only, on time only |
 | Stop work by 7:45 | ×1 | Mon–Fri |
 | Phone down, into bed | ×2 | Sun–Thu nights |
 
-Plus daily checks: three clean meals, snack on plan, water in two tiers, the planned session (legs, active recovery and abs are **no-skip**), sleep, and steps.
+Salah is marked **after** praying: the button unlocks 10 minutes into the window. At 9 pm a *Close the day* sheet catches anything left unmarked.
+
+Plus daily checks: three clean meals, snack on plan, water in two tiers, workouts (5 a week, any split, any day) and abs (2 a week), steps (full at 11k, zero under 8k) and study hours.
+
+### The fitness four
+11k+ steps · a workout (or an allowed rest day) · 3 clean meals · 3.25 L+ water. Miss three of the four and the day is **red**. Two red days in a row puts a one-tap *Message the coach* button on the screen, with the message already written.
 
 > **Thursday check-in.** Weight, eight tape measurements and progress photos by **9:00 am**. Miss it and the whole day scores zero.
 
 ```
 day score = points earned ÷ points possible × 100
-late ×0.6 · elsewhere ×0.5 · qaza ×0.5 · snack over plan −1 · water not logged −1
+late ×0.6 · at home ×0.5 · qaza ×0.5 · snack over plan −1 · water not logged −1
 ```
 
 <br>
@@ -97,12 +99,13 @@ late ×0.6 · elsewhere ×0.5 · qaza ×0.5 · snack over plan −1 · water not
 
 <img src="assets/trends.png" width="280" align="right" alt="Trends screen">
 
-- **Weight vs plan**, Thursday weigh-ins against the line to 59 kg
+- **Weekly report card**, graded every Thursday, with the weakest windows named
+- **Weight vs plan**, daily weigh-ins and their 7-day average against the line to 59 kg
 - **Measurements**, latest value and change against each of the last four Thursdays, green toward the goal, red away from it, plus the full dated log
 - **Day score**, daily bars against the 60 line
-- **Salah**, masjid on time, late, elsewhere, qaza, missed, per prayer
+- **Salah**, masjid on time, late, at home, qaza, missed, per prayer
 - **Training by week**, with no-skip misses in red
-- **Steps and sleep** against target
+- **Study, steps and sleep** against target
 
 <br clear="right">
 
@@ -112,7 +115,8 @@ Nothing. One `index.html` with inline CSS, inline SVG and vanilla JS, a 10-line 
 
 | | |
 |---|---|
-| Sky, skyline, ring, torso | Hand-built SVG, recomputed per render |
+| Sky | One fragment shader, sun position computed for Lahore, mean lunar phase |
+| Skyline, ring, torso, moon chain | Hand-built SVG, recomputed per render |
 | Embers and bursts | One `<canvas>`, paused when the tab is hidden |
 | Time | `Intl.DateTimeFormat` pinned to `Asia/Karachi` |
 | Offline | Service worker, network first, cache fallback |
@@ -120,11 +124,20 @@ Nothing. One `index.html` with inline CSS, inline SVG and vanilla JS, a 10-line 
 
 <br>
 
-## Install
+## Install it as an app
 
-1. Open **https://sulemanawais.github.io/getfit/** in Chrome on Android
-2. Menu → **Add to Home screen** → Install
-3. Settings → **Copy backup** every Thursday after the weigh-in
+It's a website that installs like an app: own icon, full screen, no browser bar, works offline.
+
+**Android (Chrome)**
+1. Open **[sulemanawais.github.io/getfit](https://sulemanawais.github.io/getfit/)**
+2. Tap **⋮** → **Add to Home screen** → **Install**
+3. Open it from the new **ABS** icon
+
+**iPhone (Safari)**
+1. Open the same link in **Safari**
+2. Tap **Share** → **Add to Home Screen** → **Add**
+
+**Keep your data safe.** Everything lives on your phone. Settings → **Copy backup** every Thursday after the weigh-in, and paste it somewhere you trust. Restore pastes it back.
 
 <br>
 

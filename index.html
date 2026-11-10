@@ -1,4 +1,11 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0F1012">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
 <title>Abs Before Ramadan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,9 +30,9 @@
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 var(--f-b);-webkit-tap-highlight-color:transparent}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
-main{max-width:560px;margin:0 auto;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));padding-block:12px calc(86px + env(safe-area-inset-bottom,0px))}
-h2{margin:28px 4px 10px;font:600 13px var(--f-b);color:var(--muted);display:flex;justify-content:space-between;gap:8px;align-items:baseline}
-h2 em{font-style:normal;font-size:12px}
+main{max-width:560px;margin:0 auto;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));padding-block:12px calc(104px + env(safe-area-inset-bottom,0px))}
+h2{margin:30px 4px 10px;font:800 17px var(--f-d);letter-spacing:.07em;text-transform:uppercase;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+h2 em{font:600 12px var(--f-b);letter-spacing:0;text-transform:none;color:var(--muted)}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--h2);outline-offset:2px}
@@ -33,7 +40,9 @@ button{cursor:pointer}
 svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---- hero sky: its own world, always a night-to-dusk palette with white type ---- */
-.hero{position:relative;border-radius:24px;overflow:hidden;color:#FFF8F0;padding:14px 14px 0;background:linear-gradient(180deg,var(--k1),var(--k2) 55%,var(--k3));isolation:isolate}
+#sky{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.hero.gl .stars,.hero.gl .orb{display:none}
+.hero{position:relative;margin:-12px -12px 0;border-radius:0 0 30px 30px;overflow:hidden;color:#FFF8F0;padding:16px 16px 0;background:linear-gradient(180deg,var(--k1),var(--k2) 55%,var(--k3));isolation:isolate}
 .sky-night{--k1:#070A1C;--k2:#121735;--k3:#262347}
 .sky-dawn{--k1:#141A3C;--k2:#5A3A66;--k3:#E38A5C}
 .sky-day{--k1:#173F68;--k2:#2F6D9A;--k3:#7FB0C9}
@@ -50,11 +59,16 @@ svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-wid
 .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;position:relative}
 .logo{font:800 34px/.85 var(--f-d);letter-spacing:.01em}
 .logo span{display:block;font:600 12.5px var(--f-b);opacity:.85;margin-top:5px}
+.logo em{display:block;font:600 12px var(--f-b);font-style:normal;margin-top:7px;letter-spacing:.02em;opacity:.95}
+.logo em b{font:800 19px/1 var(--f-d);color:#FFC24A}
+.top{text-shadow:0 1px 10px rgba(0,0,0,.4)}
 .clock{text-align:right;font-size:12px;opacity:.85}
 .clock b{display:block;font:800 26px/1 var(--f-d)}
 .ringwrap{position:relative;width:min(300px,78vw);margin:2px auto 0}
 .ring{width:100%;height:auto;display:block;overflow:visible}
-.ring .seg{fill:none;stroke-width:15}
+.ring .seg{fill:none;stroke-width:8}
+.ring .sal{stroke-width:17}
+.ring .ontime,.ring .cur{filter:drop-shadow(0 0 5px rgba(255,107,53,.85))}
 .ring .todo{stroke:rgba(255,255,255,.14)}
 .ring .ontime{stroke:url(#heat)}
 .ring .late,.ring .qaza{stroke:#FFB020}
@@ -69,18 +83,19 @@ svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-wid
 .ring .hand{stroke:#fff;stroke-width:2;stroke-linecap:round}
 #fx{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);pointer-events:none}
 .center{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
-.center>div{text-align:center;width:60%;display:grid;gap:3px;justify-items:center;pointer-events:auto;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.center::before{content:"";position:absolute;inset:16%;border-radius:50%;background:rgba(8,10,26,.3);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.09)}
+.center>div{position:relative;text-align:center;width:60%;display:grid;gap:3px;justify-items:center;pointer-events:auto;text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .center .k{font:700 11px var(--f-b);letter-spacing:.08em;color:#FFC24A}
 .center .w{font:800 30px/1 var(--f-d);text-wrap:balance}
 .center .t{font-size:12.5px;opacity:.85}
 .go{margin-top:8px;border:0;border-radius:999px;padding:10px 24px;font:800 15px var(--f-b);color:#1A0F08;background:linear-gradient(100deg,#FFC24A,#FF6B35 55%,#E8437A);box-shadow:0 8px 26px -8px #FF6B35}
 .go:active{transform:scale(.96)}
-.score{display:flex;justify-content:center;gap:22px;position:relative;padding:4px 0 6px}
+.score{display:flex;justify-content:center;gap:20px;position:relative;width:max-content;max-width:100%;margin:8px auto 6px;padding:8px 18px;border-radius:18px;background:rgba(8,10,26,.3);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.09)}
 .score div{text-align:center;font-size:11.5px;opacity:.85}
 .score b{display:block;font:800 26px/1 var(--f-d)}
-.faces{overflow:hidden;margin:0 -14px;touch-action:pan-y}
+.faces{overflow:hidden;margin:0 -16px;touch-action:pan-y}
 .track{display:flex;width:200%;transition:transform .45s cubic-bezier(.3,.7,.3,1)}
-.fc{width:50%;padding:0 14px;display:grid;align-content:center}
+.fc{width:50%;padding:0 16px;display:grid;align-content:center}
 #jface{justify-items:center;text-align:center}
 .jk{font:700 11px var(--f-b);letter-spacing:.08em;color:#FFC24A}
 .jt{font-size:12.5px;opacity:.85}
@@ -88,7 +103,7 @@ svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-wid
 .dots{display:flex;justify-content:center;gap:8px;position:relative;margin:2px 0 -4px}
 .dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#FFF8F0;opacity:.35}
 .dots button.on{opacity:1}
-.skyline{display:block;width:calc(100% + 28px);margin:0 -14px;height:auto}
+.skyline{display:block;width:calc(100% + 32px);margin:0 -16px;height:auto}
 .skyline .b{fill:var(--bg)}
 .skyline .lit{fill:#FFC24A;opacity:0}
 .sky-night .skyline .lit,.sky-dusk .skyline .lit{opacity:.85}
@@ -104,7 +119,7 @@ svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-wid
 .sm.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
 /* chain */
-.card{background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:14px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
 .streak{display:flex;align-items:baseline;gap:10px}
 .streak .n{font:800 48px/.9 var(--f-d);background:linear-gradient(90deg,var(--h1),var(--h2),var(--h3));-webkit-background-clip:text;background-clip:text;color:transparent}
 .streak .l{font-weight:700}
@@ -114,12 +129,14 @@ svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-wid
 .gsvg text{fill:var(--muted);font:600 9px var(--f-b)}
 .l0{fill:var(--s2)} .l1{fill:color-mix(in srgb,var(--h1) 40%,var(--s2))} .l2{fill:var(--h1)} .l3{fill:var(--h2)} .l4{fill:var(--h3)}
 .lx{fill:var(--miss-bg);stroke:var(--miss);stroke-width:.8;stroke-opacity:.6}
-.fut{fill:none;stroke:var(--line);stroke-width:.8}
-.today{stroke:var(--ink);stroke-width:1.6;animation:burn 1.6s ease-in-out infinite}
-.ph{fill:var(--muted);opacity:.2}
+.fut{fill:color-mix(in srgb,var(--muted) 45%,var(--s2))}
+.sh{fill:var(--bg);opacity:.74;pointer-events:none}
+.rm{fill:none;stroke:var(--h1);stroke-width:.9;opacity:.75}
+.bk{fill:none;stroke:var(--muted);stroke-width:.9;stroke-dasharray:2 2.4}
+.today{stroke:var(--ink);stroke-width:1.8;animation:burn 1.6s ease-in-out infinite}
 .leg{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:11px;color:var(--muted)}
 .leg span{display:inline-flex;align-items:center;gap:3px}
-.leg i{width:10px;height:10px;border-radius:2.5px;display:inline-block}
+.leg i{width:10px;height:10px;border-radius:50%;display:inline-block}
 
 /* window board */
 .board{background:var(--s1);border:1px solid var(--line);border-radius:18px;overflow:hidden}
@@ -184,13 +201,17 @@ svg.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-wid
 .db .dbh{display:flex;align-items:center;gap:14px}.gr{font:800 54px/.8 var(--f-d)}
 .dbs{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:6px;font-size:13.5px}.dbs>b{font-size:12px;color:var(--muted);font-weight:700}
 .dbr{display:flex;justify-content:space-between;gap:10px}.dbr span{min-width:0}.dbr b{text-align:right}.fx{border-top-color:var(--h2)}
+.f4{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.f4 span{padding:11px 10px;border-radius:12px;background:var(--s2);font-weight:700;font-size:13px;color:var(--muted)}
+.f4 span.y{background:linear-gradient(140deg,var(--h1),var(--h2));color:#1A0F08}
+.f4 span small{display:block;font-weight:600;font-size:11px;opacity:.75}
+.tw{border-color:var(--miss)}.tw .btn{margin-top:8px}
 .strict{font:700 10px var(--f-b);font-style:normal;color:var(--miss);border:1px solid var(--miss);border-radius:5px;padding:0 4px}
 
 /* tabs */
-nav.tabs{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--s1) 92%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:5}
-nav.tabs button{flex:1;max-width:186px;border:0;background:none;padding:13px 0 14px;font-weight:700;font-size:13px;color:var(--muted);position:relative}
-nav.tabs button.on{color:var(--ink)}
-nav.tabs button.on::after{content:"";position:absolute;left:30%;right:30%;top:0;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,var(--h1),var(--h2),var(--h3))}
+nav.tabs{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:min(340px,calc(100% - 28px));background:color-mix(in srgb,var(--s1) 80%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--line);border-radius:999px;display:flex;padding:5px;z-index:5;box-shadow:0 14px 34px -14px rgba(0,0,0,.7)}
+nav.tabs button{flex:1;border:0;background:none;border-radius:999px;padding:11px 0;font-weight:700;font-size:13px;color:var(--muted);transition:color .2s}
+nav.tabs button.on{color:#1A0F08;background:linear-gradient(100deg,#FFC24A,#FF6B35 60%,#E8437A);box-shadow:0 6px 18px -8px #FF6B35}
 
 /* trends + settings */
 .title{font:800 34px/1 var(--f-d);margin:6px 4px 0}
@@ -242,11 +263,18 @@ textarea{font-size:11.5px;height:100px}
 .shc .q{font-weight:600;color:var(--muted);font-size:13px}
 .shc input{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:10px 12px;font:800 32px var(--f-d);color:var(--ink)}
 .shc .r{font-size:13px;color:var(--muted);min-height:18px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(72px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:11px;font-weight:700;font-size:13px;z-index:20;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:11px;font-weight:700;font-size:13px;z-index:20;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
+.abf{filter:drop-shadow(0 0 5px rgba(255,107,53,.85));animation:burn 2.6s ease-in-out infinite}
+.wv{animation:wv 1.3s linear infinite}
+@keyframes wv{to{transform:translateX(14px)}}
+.in>*{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.in>:nth-child(2){animation-delay:.05s}.in>:nth-child(3){animation-delay:.1s}.in>:nth-child(n+4){animation-delay:.15s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.ring .draw{stroke-dashoffset:0}}
 </style>
 
+</head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="i-salah" viewBox="0 0 24 24"><path d="M5 21V11a7 7 0 0 1 14 0v10M3 21h18M12 4V2M9 21v-4a3 3 0 0 1 6 0v4"/></symbol>
  <symbol id="i-gym" viewBox="0 0 24 24"><path d="M6 7v10M3 9.5v5M18 7v10M21 9.5v5M6 12h12"/></symbol>
@@ -263,47 +291,38 @@ textarea{font-size:11.5px;height:100px}
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-const KEY='abr.v1',TZ='Asia/Karachi',RAMADAN='2027-02-08',END='2027-03-07',START_W=70.4,GOAL_W=59;
+const KEY='abr.v1',TZ='Asia/Karachi',RAMADAN='2027-02-08',END='2027-03-07',START_W=71.3,GOAL_W=59;
 const SES={push:'Push',pull:'Pull',legs:'Legs',recovery:'Active recovery',shoulders:'Shoulders',arms:'Arms',rest:'Rest'};
 const STRICT=['legs','recovery'],LIFTS=['push','pull','legs','recovery','shoulders','arms'];
 const DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const PLAN=[['2026-11-04',70.4],['2026-11-11',68.9],['2026-11-18',67.9],['2026-11-25',66.9],['2026-12-02',66.1],['2026-12-09',65.3],['2026-12-16',64.6],['2026-12-23',65.6],['2026-12-30',64],['2027-01-06',63.4],['2027-01-13',62.8],['2027-01-20',62.2],['2027-01-27',61.6],['2027-02-03',61],['2027-02-07',60.7],['2027-02-14',60.2],['2027-02-21',59.8],['2027-02-28',59.4],['2027-03-07',59]];
-const ALL=[0,1,2,3,4,5,6],WK=[1,2,3,4,5],SWITCH='2026-11-07';
+const PLAN=[['2026-11-10',71.3],['2026-11-17',69.8],['2026-11-24',68.8],['2026-12-01',67.8],['2026-12-08',66.9],['2026-12-15',66.1],['2026-12-22',65.3],['2026-12-29',66.1],['2027-01-05',64.6],['2027-01-12',63.9],['2027-01-19',63.2],['2027-01-26',62.5],['2027-02-02',61.8],['2027-02-07',61.3],['2027-02-14',60.8],['2027-02-21',60.3],['2027-02-28',59.8],['2027-03-07',59.3]];
+const ALL=[0,1,2,3,4,5,6],WK=[1,2,3,4,5];
 /* rule: grace = markable until 1 h after close; strict = on time only. masjid: only | pref */
-function defaults(){return{startDate:'2026-11-05',targets:{sleep:7,steps:11000,study:3},v:2,
+const COACH_TXT="Bhai, I owe you the truth. When you asked last time, I said I had started the cut. I hadn't. I'm at {kg} kg and just had {n} red days in a row on my tracker. I want to hire you for the cut till Eid, target 59, abs by April. I need someone to hold me to it. Can we start this week?";
+function defaults(){return{startDate:'2026-11-10',targets:{sleep:7,steps:11000,study:3,wk:5,abs:2},v:4,coach:{phone:'',text:COACH_TXT,sent:null},
   windows:[
    {id:'fajr',label:'Fajr',start:'05:10',end:'05:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL,qaza:[0]},
-   {id:'study1',label:'Start study block',start:'05:45',end:'06:00',kind:'work',w:2,rule:'grace',days:WK,from:SWITCH},
-   {id:'gym',label:'Leave for gym',start:'06:00',end:'06:45',kind:'gym',w:2,rule:'grace',days:WK,until:'2026-11-06'},
-   {id:'gym2',label:'Leave for gym',start:'07:15',end:'07:35',kind:'gym',w:2,rule:'grace',days:WK,from:SWITCH},
-   {id:'study',label:'Start studying by 8:15',start:'08:00',end:'08:15',kind:'work',w:2,rule:'grace',days:WK,until:'2026-11-06'},
-   {id:'nap',label:'Up from nap',start:'09:30',end:'09:50',kind:'sleep',w:1,rule:'grace',days:WK,from:SWITCH},
-   {id:'work',label:'Start work',start:'10:00',end:'10:15',kind:'work',w:1,rule:'grace',days:WK},
-   {id:'zuhr',label:'Zuhr',start:'12:15',end:'12:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:[0,1,2,3,4,6]},
-   {id:'jleave',label:'Post status, leave for Juma',start:'12:50',end:'13:00',kind:'work',w:1,rule:'grace',days:[5]},
    {id:'juma',label:'Juma',start:'13:00',end:'13:45',kind:'salah',w:3,rule:'strict',masjid:'only',days:[5]},
-   {id:'asr',label:'Asr',start:'15:15',end:'15:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL},
-   {id:'maghrib',label:'Maghrib',start:'17:15',end:'17:40',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL},
-   {id:'isha',label:'Isha',start:'18:40',end:'19:15',kind:'salah',w:3,rule:'strict',masjid:'only',days:ALL},
+   {id:'zuhr',label:'Zuhr',start:'13:15',end:'13:45',kind:'salah',w:3,rule:'grace',masjid:'pref',days:[0,1,2,3,4,6]},
+   {id:'asr',label:'Asr',start:'16:00',end:'16:30',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL},
+   {id:'maghrib',label:'Maghrib',start:'17:00',end:'17:25',kind:'salah',w:3,rule:'grace',masjid:'pref',days:ALL},
+   {id:'isha',label:'Isha',start:'19:00',end:'19:30',kind:'salah',w:3,rule:'strict',masjid:'only',days:ALL},
    {id:'wend',label:'Stop work',start:'19:30',end:'19:45',kind:'work',w:1,rule:'grace',days:WK},
    {id:'bed',label:'Phone down, into bed',start:'21:15',end:'21:30',kind:'sleep',w:2,rule:'grace',days:[0,1,2,3,4]}],
   split:{1:'push',2:'pull',3:'legs',4:'recovery',5:'shoulders',6:'arms',0:'rest'},absDays:[3,6],
   measures:[{id:'sh',name:'Shoulders',short:'Shoulders',dir:'up'},{id:'ch',name:'Chest',short:'Chest',dir:'up'},{id:'rb',name:'Right bicep, flexed',short:'R bicep',dir:'up'},{id:'lb',name:'Left bicep, flexed',short:'L bicep',dir:'up'},
    {id:'wa',name:'Waist',short:'Waist',dir:'down'},{id:'hi',name:'Hips',short:'Hips',dir:'down'},{id:'rt',name:'Right thigh',short:'R thigh',dir:'down'},{id:'lt',name:'Left thigh',short:'L thigh',dir:'down'}],checkinBy:'09:00',
-  overrides:{'2026-11-05':'push','2026-11-06':'pull','2026-11-07':'legs','2026-11-08':'rest'}}}
+  overrides:{}}}
 
 let S;
 function load(){let r=null;try{r=localStorage.getItem(KEY)}catch(e){}try{S=r?JSON.parse(r):null}catch(e){S=null}if(!S||!S.settings)S={settings:defaults(),days:{}};const D=defaults();migrate(D);if(!S.settings.measures||S.settings.measures.some(m=>['bir','bif','stom'].includes(m.id)))S.settings.measures=D.measures;S.settings.checkinBy=S.settings.checkinBy||D.checkinBy}
-/* v2: new morning schedule from SWITCH. Old windows get an end date; past marks keep the close time they were graded against */
-function migrate(D){const g=S.settings,W=g.windows,f=id=>W.find(w=>w.id===id),dw=id=>({...D.windows.find(w=>w.id===id)});if(g.v>=2)return;
-  for(const k in S.days){const sl=S.days[k].slots||{};for(const id in sl){const w=f(id);if(w&&sl[id].t!=null&&!sl[id].end)sl[id].end=w.end}delete S.days[k].stepAt}
-  W.forEach(w=>{delete w.stepMin;delete w.stepMax});
-  if(f('fajr'))f('fajr').masjid='pref';
-  if(!f('study'))W.push(dw('study'));f('study').until='2026-11-06';
-  if(f('gym'))f('gym').until='2026-11-06';
-  for(const id of['study1','gym2','nap'])if(!f(id))W.push(dw(id));
-  if(f('bed')){f('bed').start='21:15';f('bed').end='21:30'}
-  g.targets.study=g.targets.study||3;g.v=2;save()}
+/* v3: the restart. Day 1 moves to 10 Nov and the schedule is replaced; everything logged before stays in storage, outside the journey. Windows you added yourself are kept */
+function migrate(D){const g=S.settings;
+  if(g.v<3){for(const k in S.days){const sl=S.days[k].slots||{};for(const id in sl){const w=g.windows.find(x=>x.id===id);if(w&&sl[id].t!=null&&!sl[id].end)sl[id].end=w.end}delete S.days[k].stepAt}
+    g.windows=D.windows.concat(g.windows.filter(w=>/^w[0-9a-z]{6,}$/.test(w.id)));g.startDate=D.startDate;g.targets.study=g.targets.study||3;try{localStorage.removeItem('abr.rev')}catch(e){}}
+  /* v4: eight markers, workouts any day (5 a week), the fitness four and the coach tripwire */
+  if(g.v<4){const drop=['study1','gym2','nap','work','jleave','gym','study'];g.windows=g.windows.filter(w=>!drop.includes(w.id));
+    g.targets.wk=g.targets.wk||5;g.targets.abs=g.targets.abs||2;g.coach=g.coach||D.coach;g.v=4;save()}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
 /* ---- Pakistan time, whatever the phone's zone ---- */
@@ -329,7 +348,7 @@ const ic=n=>`<svg class="ic"><use href="#i-${n}"/></svg>`;
 const day=k=>S.days[k]||(S.days[k]={slots:{}}),peek=k=>S.days[k];
 const plan=k=>S.settings.overrides[k]||S.settings.split[dow(k)];
 const absP=k=>S.settings.overrides[k]?S.settings.overrides[k]==='legs':S.settings.absDays.includes(dow(k));
-const phase=k=>k<S.settings.startDate?'pre-cut':k>='2026-12-17'&&k<='2026-12-23'?'deficit break':k>=RAMADAN&&k<=END?'ramadan':k>END?'done':'cut';
+const phase=k=>k<S.settings.startDate?'pre-cut':k>='2026-12-22'&&k<='2026-12-28'?'deficit break':k>=RAMADAN&&k<=END?'ramadan':k>END?'done':'cut';
 function planW(k){if(k<=PLAN[0][0])return PLAN[0][1];for(let i=1;i<PLAN.length;i++)if(k<=PLAN[i][0]){const[a,x]=PLAN[i-1],[b,y]=PLAN[i];return x+(y-x)*diff(a,k)/diff(a,b)}return GOAL_W}
 const winsFor=k=>S.settings.windows.filter(w=>w.days.includes(dow(k))&&(!w.from||k>=w.from)&&(!w.until||k<=w.until)).sort((a,b)=>toMin(a.start)-toMin(b.start));
 const lockAt=w=>toMin(w.end)+(w.rule==='strict'?0:60);
@@ -350,19 +369,28 @@ function ciDone(k){const d=peek(k);return!!d&&d.weight!=null&&!!d.photos&&S.sett
 function ciStamp(k){const d=day(k);if(ciDone(k)){if(d.ci==null)d.ci=k===tk()?now():9999}else delete d.ci}
 const ciOk=k=>(peek(k)?.ci??9999)<=toMin(S.settings.checkinBy);
 const ciVoid=k=>isCI(k)&&!ciOk(k)&&(k<tk()||(k===tk()&&now()>toMin(S.settings.checkinBy)));
-/* day points, item by item: weighted windows, meals, snack, water, session, abs, sleep, steps, study (from SWITCH) */
+/* day points, item by item: weighted windows, meals, snack, water, session, abs, sleep, steps, study */
 function parts(k){const d=peek(k)||{slots:{}},T=S.settings.targets,c=closed(k),L=[],P=(id,name,p,e)=>L.push({id,name,p,e});
   for(const w of winsFor(k))P(w.id,w.label,w.w,(PTS[st(k,w)]||0)*w.w);
   P('meals','Clean meals',3,['bf','lu','di'].filter(x=>d.meals?.[x]).length);
   P('snack','Snack',1,d.snack==='over'?-1:d.snack?1:0);
   P('water','Water',1.5,d.water==='4'?1.5:d.water==='35'?1:c?-1:0);
-  const pl=plan(k);if(pl!=='rest'){const w=STRICT.includes(pl)?2:1.5;P('train',SES[pl]+' session',w,d.trained?w:0)}
-  if(absP(k))P('abs','Abs',2,d.abs?2:0);
-  P('sleep','Sleep',1,(d.sleep||0)>=T.sleep?1:0);
-  P('steps','Steps',1,(d.steps||0)>=T.steps?1:0);
-  if(k>=SWITCH)P('studyh','Study hours',3,Math.min((d.study||0)/(T.study||3),1)*3);
+  const tw=wkNeed(k,x=>x.trained,T.wk||5),ab=wkNeed(k,x=>x.abs,T.abs||2);
+  if(d.trained||tw.req)P('train','Workout',2,d.trained?2:0);
+  if(d.abs||ab.req)P('abs','Abs',1,d.abs?1:0);
+  P('steps','Steps',1.5,stepF(d.steps||0)*1.5);
+  P('studyh','Study hours',3,Math.min((d.study||0)/(T.study||3),1)*3);
   return L}
 function score(k){if(ciVoid(k))return{e:0,p:1,f:0,void:true};let e=0,p=0;for(const x of parts(k)){p+=x.p;e+=x.e}e=Math.max(0,e);return{e,p,f:e/p}}
+/* workouts and abs: any day, weekly target. A day only requires one when the week can no longer reach the target without it */
+const wkStart=k=>add(k,-((dow(k)+6)%7));
+function wkNeed(k,f,t){const s0=S.settings.startDate,ws=wkStart(k),we=add(ws,6),a=ws<s0?s0:ws,tg=Math.round(t*(diff(a,we)+1)/7),left=diff(k,we)+1;
+  let c=0;for(let x=a;x<k;x=add(x,1))if(f(peek(x)||{}))c++;return{c,tg,left,req:tg-c>0&&tg-c>=left}}
+const stepF=n=>{const t=S.settings.targets.steps;return n>=t?1:n<8000?0:(n-8000)/(t-8000)};
+/* the fitness four. Red day = 3 or more missed. Meals get a 2-day ramp from the start date */
+function four(k){const d=peek(k)||{},T=S.settings.targets;return{steps:(d.steps||0)>=T.steps,gym:!!d.trained||!wkNeed(k,x=>x.trained,T.wk||5).req,meals:k<add(S.settings.startDate,2)||['bf','lu','di'].every(x=>d.meals?.[x]),water:d.water==='35'||d.water==='4'}}
+const red=k=>k>=S.settings.startDate&&closed(k)&&Object.values(four(k)).filter(Boolean).length<=1;
+function redRun(){let k=closed(tk())?tk():add(tk(),-1),n=0;while(red(k)){n++;k=add(k,-1)}return{n,from:add(k,1)}}
 const lvl=f=>f<.35?'x':f<.55?1:f<.7?2:f<.85?3:4;
 function streak(){const T=tk();let k=add(T,-1),n=0;while(k>=S.settings.startDate){if(!peek(k)||score(k).f<.6)break;n++;k=add(k,-1)}if(peek(T)&&score(T).f>=.6)n++;return n}
 
@@ -378,7 +406,7 @@ function ring(k,c){const ws=winsFor(k),n=ws.length,R=124,step=Math.PI*2/n,g=.05;
   let s=`<svg class="ring" viewBox="0 0 320 320" aria-hidden="true"><defs><linearGradient id="heat" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFC24A"/><stop offset=".55" stop-color="#FF6B35"/><stop offset="1" stop-color="#E8437A"/></linearGradient></defs>`;
   ws.forEach((w,i)=>{const a0=-Math.PI/2+i*step+g/2,a1=a0+step-g,x=st(k,w),isC=c&&c.m==='now'&&c.w.id===w.id,m=(a0+a1)/2;
     if(isC)emitAt=[160+R*Math.cos(m),160+R*Math.sin(m),m];
-    s+=`<path class="seg ${x}${isC?' cur':''}${first?' draw':''}" style="--l:${(R*(a1-a0)).toFixed(0)};--d:${(i*.05).toFixed(2)}s" d="${arc(R,a0,a1)}"/>`;
+    s+=`<path class="seg ${x}${w.kind==='salah'?' sal':''}${isC?' cur':''}${first?' draw':''}" style="--l:${(R*(a1-a0)).toFixed(0)};--d:${(i*.05).toFixed(2)}s" d="${arc(R,a0,a1)}"/>`;
 });
   if(k===tk()&&n){const t=now();let i=ws.findIndex(w=>t<=toMin(w.end));if(i<0)i=n;let f=0;if(i<n){const a=toMin(ws[i].start),b=toMin(ws[i].end);f=t<a?0:Math.min(1,(t-a)/Math.max(1,b-a))}
     const a=-Math.PI/2+(i+f)*step;s+=`<line class="hand" x1="${160+(R-19)*Math.cos(a)}" y1="${160+(R-19)*Math.sin(a)}" x2="${160+(R+19)*Math.cos(a)}" y2="${160+(R+19)*Math.sin(a)}"/>`}
@@ -394,33 +422,37 @@ const STARS=(()=>{let s='';for(let i=0;i<28;i++)s+=`<i style="left:${(i*37.3)%10
 function orb(n){if(n>=330&&n<1110){const f=(n-330)/780;return`<div class="orb sun" style="left:${8+f*84}%;top:${62-Math.sin(f*Math.PI)*48}%"></div>`}
   const f=((n<330?n+1440:n)-1110)/660;return`<div class="orb moon" style="left:${88-f*76}%;top:${42-Math.sin(f*Math.PI)*28}%"></div>`}
 
-function today(){const k=vk,T=tk(),isT=k===T,pre=k<S.settings.startDate,d=pre?{slots:{}}:day(k),n=now(),c=isT&&!pre?cur():null,ws=winsFor(k),sc=score(k),pl=plan(k),ab=absP(k),wn=diff(S.settings.startDate,k);
-  const done=ws.filter(w=>PTS[st(k,w)]).length,toR=diff(T,RAMADAN),sn=isT?n:720;
-  let h=`<section class="hero sky-${skyPhase(sn)}">${STARS}${orb(sn)}<div class="top"><div class="logo">ABS<span>before Ramadan: ${toR>0?toR+' days':'Ramadan Mubarak'}</span></div>
+function today(){const k=vk,T=tk(),isT=k===T,pre=k<S.settings.startDate,d=pre?{slots:{}}:day(k),n=now(),c=isT&&!pre?cur():null,ws=winsFor(k),sc=score(k),wn=diff(S.settings.startDate,k);
+  const tw=wkNeed(k,x=>x.trained,S.settings.targets.wk||5),ab=wkNeed(k,x=>x.abs,S.settings.targets.abs||2),done=ws.filter(w=>PTS[st(k,w)]).length,toR=diff(T,RAMADAN),sn=isT?n:720,nn=(1-mph(Date.now()))*SYN,mo=nn<=toR+1?Math.floor((toR+1-nn)/SYN)+1:0;skyMs=isT?Date.now():pK(k).getTime()+252e5;
+  let h=`<section id="hero" class="hero sky-${skyPhase(sn)}${gl?' gl':''}">${STARS}${orb(sn)}<div class="top"><div class="logo">ABS<span>before Ramadan</span><em>${toR>0?`<b>${toR}</b> days · <b>${mo}</b> new moon${mo===1?'':'s'}`:'Ramadan Mubarak'}</em></div>
    <div class="clock">${isT?`<b>${ms(n).replace(/ (am|pm)/,'<small style="font-size:13px"> $1</small>')}</b>${fd(k)}`:`<b>${sd(k)}</b>${DOW[dow(k)]}`}</div></div>
    <div class="faces" id="faces"><div class="track" id="track" style="transform:translateX(${-50*face}%)"><div class="fc"><div class="ringwrap">${ring(k,c)}<canvas id="fx"></canvas><div class="center"><div>`;
   if(pre){const dd=diff(k,S.settings.startDate);h+=`<span class="k">DAY 1</span><span class="w">${dd===1?'Tomorrow':'In '+dd+' days'}</span><span class="t">${fd(S.settings.startDate)}, Fajr first</span>`}
-  else if(isT&&c)h+=`<span class="k">${c.m==='now'?'NOW':'NEXT'}</span><span class="w">${esc(c.w.label)}</span><span class="t">${c.m==='now'?'closes in '+left(toMin(c.w.end)-n):'opens in '+left(toMin(c.w.start)-n)}${c.w.rule==='strict'?', on time only':''}</span>${c.m==='now'?`<button class="go" data-mark="${c.w.id}">Done</button>`:''}`;
+  else if(isT&&c)h+=`<span class="k">${c.m==='now'?'NOW':'NEXT'}</span><span class="w">${esc(c.w.label)}</span><span class="t">${c.m==='now'?'closes in '+left(toMin(c.w.end)-n):'opens in '+left(toMin(c.w.start)-n)}${c.w.rule==='strict'?', on time only':''}</span>${c.m==='now'?(c.w.kind==='salah'&&n<toMin(c.w.start)+10?'<span class="t">mark it after you pray</span>':`<button class="go" data-mark="${c.w.id}">Done</button>`):''}`;
   else if(isT)h+=`<span class="k">DAY CLOSED</span><span class="w">Rest up</span><span class="t">Fajr comes early</span>`;
   else h+=`<span class="k">${DOW[dow(k)].toUpperCase()}</span><span class="w">${Math.round(sc.f*100)}</span><span class="t">day score</span><button class="go" data-act="today" style="font-size:13px;padding:8px 16px">Back to today</button>`;
-  h+=`</div></div></div><div class="score">${pre?'<div><b>0</b>points so far</div><div><b>'+plan(S.settings.startDate).replace(/^./,x=>x.toUpperCase())+'</b>day 1 session</div>':`<div><b>${Math.round(sc.f*100)}</b>score</div><div><b>${done}/${ws.length}</b>windows</div><div><b>${kf(d.steps||0)}</b>steps</div>${wn>=0?`<div><b>${Math.floor(wn/7)+1}</b>week</div>`:''}`}</div></div><div class="fc" id="jface">${jFace(jT(isT?T:k))}</div></div></div><div class="dots"><button data-face="0" class="${face?'':'on'}" aria-label="Today"></button><button data-face="1" class="${face?'on':''}" aria-label="Journey"></button></div>${SKY}</section>`;
+  h+=`</div></div></div><div class="score">${pre?'<div><b>0</b>points so far</div><div><b>'+DOW[dow(S.settings.startDate)]+'</b>day 1</div>':`<div><b>${Math.round(sc.f*100)}</b>score</div><div><b>${done}/${ws.length}</b>windows</div><div><b>${kf(d.steps||0)}</b>steps</div>${wn>=0?`<div><b>${Math.floor(wn/7)+1}</b>week</div>`:''}`}</div></div><div class="fc" id="jface">${jFace(jT(isT?T:k))}</div></div></div><div class="dots"><button data-face="0" class="${face?'':'on'}" aria-label="Today"></button><button data-face="1" class="${face?'on':''}" aria-label="Journey"></button></div>${SKY}</section>`;
 
+  const rr=redRun(),cs=S.settings.coach||{};
+  if(isT&&!pre&&rr.n>=2&&!(cs.sent&&cs.sent>=rr.from))h+=`<div class="catch tw"><p>${rr.n} red days in a row. Time to message the coach.</p><div class="hint" style="margin:0">Red day: 3 or more of the fitness four missed. That was the deal.</div><button class="btn on" data-coach>Message the coach</button></div>`;
+  const night=isT&&n>=21*60,open=isT?ws.filter(w=>!d.slots[w.id]&&(['open','qazaable'].includes(st(k,w))||(night&&st(k,w)==='missed'))):[];
+  if(open.length)h+=`<div class="catch"><p>${night?`Close the day: ${open.length} left unmarked.`:`${open.length} closed without a mark. Fill before ${open.length>1?'they lock':'it locks'}.`}</p>${open.map(w=>{const s=st(k,w);
+    return`<div class="it"><span>${esc(w.label)}<small>${s==='qazaable'?'Sunday: qaza counts half':night?'only if you really did it on time':`locks in ${left(lockAt(w)-n)}`}</small></span><div>${s==='qazaable'?`<button class="sm pri" data-qaza="${w.id}">Prayed qaza</button>`:`<button class="sm pri" data-${night?'sweep':'mark'}="${w.id}">Did it</button>`}<button class="sm" data-skip="${w.id}">Missed</button></div></div>`}).join('')}</div>`;
   if(!pre&&(k<T||n>=21*60))h+=debrief(k);
-  const open=isT?ws.filter(w=>['open','qazaable'].includes(st(k,w))):[];
-  if(open.length)h+=`<div class="catch"><p>${open.length} closed without a mark. Fill before ${open.length>1?'they lock':'it locks'}.</p>${open.map(w=>{const s=st(k,w);
-    return`<div class="it"><span>${esc(w.label)}<small>${s==='qazaable'?'Sunday: qaza counts half':`locks in ${left(lockAt(w)-n)}`}</small></span><div>${s==='qazaable'?`<button class="sm pri" data-qaza="${w.id}">Prayed qaza</button>`:`<button class="sm pri" data-mark="${w.id}">Did it</button>`}<button class="sm" data-skip="${w.id}">Missed</button></div></div>`}).join('')}</div>`;
 
   const sk=streak(),dl=diff(T,END);
-  h+=`<h2>Don't break the chain <em>${dl>0?dl+' days to go':'cut complete'}</em></h2><div class="card"><div class="streak"><span class="n">${sk}</span><span class="l">day streak<small>${sk?'days scoring 60 or more':'score 60 today to start one'}</small></span></div><div class="gwrap">${graph()}</div>
-   <div class="leg"><span>less <i style="background:var(--s2)"></i><i style="background:var(--h1)"></i><i style="background:var(--h2)"></i><i style="background:var(--h3)"></i> more</span><span><i style="background:var(--miss-bg);outline:1px solid var(--miss)"></i>nothing logged</span><span><i style="background:var(--muted);opacity:.4"></i>break, Ramadan</span></div></div>`;
+  h+=`<h2>The moon chain <em>${dl>0?dl+' days to go':'cut complete'}</em></h2><div class="card"><div class="streak"><span class="n">${sk}</span><span class="l">day streak<small>${sk?'days scoring 60 or more':'score 60 today to start one'}</small></span></div><div class="gwrap">${graph()}</div>
+   <div class="leg"><span>score <i style="background:var(--s2)"></i><i style="background:var(--h1)"></i><i style="background:var(--h2)"></i><i style="background:var(--h3)"></i></span><span><i style="background:var(--miss-bg);outline:1px solid var(--miss)"></i>nothing logged</span><span><i style="outline:1px solid var(--h1)"></i>Ramadan</span><span><i style="outline:1px dashed var(--muted)"></i>deficit break</span></div><div class="hint">Every disc is that night's moon. The ${mo===1?'next dark one':mo+' dark ones ahead'} ${mo===1?'is':'count down to'} Ramadan.</div></div>`;
 
-  if(pre){h+=`<h2>Before the cut</h2><div class="card"><b>Nothing to mark today.</b><div class="hint">Points, windows and the chain start ${fd(S.settings.startDate)}. Steps today are a free warm-up.</div></div>`;app.innerHTML=h;first=false;fxBind();return}
+  if(pre){h+=`<h2>Before the cut</h2><div class="card"><b>Nothing to mark today.</b><div class="hint">Points, windows and the chain start ${fd(S.settings.startDate)}. Steps today are a free warm-up.</div></div>`;app.innerHTML=h;app.className=first?'in':'';first=false;fxBind();return}
+  const F=four(k),R=redRun().n,pending=k===T&&!closed(k);
+  h+=`<h2>The fitness four <em>${R?`<b class="miss-t">${R} red day${R>1?'s':''} in a row</b>`:'2 red days in a row calls the coach'}</em></h2><div class="f4">${[['steps','11k+ steps',`${kf(d.steps||0)} logged`],['gym','Workout',d.trained?'done':F.gym?'rest day allowed':'needed today'],['meals','3 clean meals',k<add(S.settings.startDate,2)?'ramp-in: counts from '+sd(add(S.settings.startDate,2)):['bf','lu','di'].filter(x=>d.meals?.[x]).length+' of 3'],['water','3.25 L+ water',d.water?'logged':'not logged']].map(([x,l,sub])=>`<span class="${F[x]?'y':''}">${F[x]?'✓':pending?'○':'✗'} ${l}<small>${sub}</small></span>`).join('')}</div>`;
   if(isCI(k))h+=`<h2>Thursday check-in <em>by ${hm(S.settings.checkinBy).t} am</em></h2>${ciCard(k,d)}`;
-  h+=`<h2>${isT?'Windows':fd(k)} <em><button class="sm" data-act="prev">‹ Prev</button>${isT?'':' <button class="sm" data-act="next">Next ›</button>'}</em></h2><div class="board">`;
+  h+=`<h2>${isT?'Windows':fd(k)} <em>${k>S.settings.startDate?'<button class="sm" data-act="prev">‹ Prev</button>':''}${isT?'':' <button class="sm" data-act="next">Next ›</button>'}</em></h2><div class="board">`;
   for(const w of ws){const s=st(k,w),a=hm(w.start),b=hm(w.end),sl=d.slots[w.id],isC=c&&c.m==='now'&&c.w.id===w.id;
-    const sub=sl&&sl.how!=='skip'?`${sl.how==='else'?'prayed elsewhere':sl.how==='qaza'?'qaza':'at '+ms(sl.t)}`:`until ${b.t} ${b.ap}`;
-    const lab=isC?'Done':{ontime:'Done',late:'Late',home:'Elsewhere',qaza:'Qaza',missed:'Missed',open:'Fill',qazaable:'Qaza',todo:'Mark'}[s];
-    const lockd=s==='missed'&&!sl;
+    const sub=sl&&sl.how!=='skip'?`${sl.how==='else'?'prayed at home':sl.how==='qaza'?'qaza':'at '+ms(sl.t)}`:`until ${b.t} ${b.ap}`;
+    const lab=isC?'Done':{ontime:'Done',late:'Late',home:'Home',qaza:'Qaza',missed:'Missed',open:'Fill',qazaable:'Qaza',todo:'Mark'}[s];
+    const lockd=s==='missed'&&!sl&&!(isT&&n>=21*60);
     h+=`<div class="row ${w.kind}${isC?' cur':''}${s!=='todo'&&!isC?' past':''}"><div class="tm">${a.t}<small>${a.ap}</small></div>
      <div class="lb"><b>${ic(w.kind)}${esc(w.label)}<i class="wt">×${w.w}</i>${w.rule==='strict'?'<i class="strict">on time</i>':''}</b><span>${sub}</span></div>
      <button class="mk ${isC?'cur':s}" ${lockd?'disabled':`data-tog="${w.id}"`}>${lab}</button></div>`}
@@ -429,16 +461,18 @@ function today(){const k=vk,T=tk(),isT=k===T,pre=k<S.settings.startDate,d=pre?{s
   h+=`<h2>Daily checks</h2><div class="grid">
   <div class="card"><div class="hd"><b>${ic('meal')}Clean meals</b><span>1 point each</span></div><div class="chips">${[['bf','Breakfast'],['lu','Lunch'],['di','Dinner']].map(([x,l])=>`<button class="chip ${d.meals?.[x]?'on':''}" data-meal="${x}">${ic('meal')}${l}</button>`).join('')}</div>
    <div class="seg">${[['plan','Snack on plan'],['skip','No snack'],['over','Over plan']].map(([v,l])=>`<button data-snack="${v}" class="${d.snack===v?'on':''}${v==='over'?' bad':''}">${l}</button>`).join('')}</div>${d.snack==='over'?'<div class="hint miss-t">−1 point</div>':''}</div>
-  <div class="card"><div class="hd"><b>${ic('water')}Water</b><span>under 3.5 L costs a point</span></div><div class="seg">${[['35','3.5 to 4 L'],['4','4 L or more']].map(([v,l])=>`<button data-water="${v}" class="${d.water===v?'on':''}">${l}</button>`).join('')}</div>${!d.water&&closed(k)?'<div class="hint miss-t">Not logged: −1 point</div>':''}</div>
-  <div class="card"><div class="hd"><b>${ic('gym')}${SES[pl]}${STRICT.includes(pl)?'<i class="strict">no skip</i>':''}</b><span>${pl==='rest'?'rest day':dow(k)===6?'Saturday: any time today':'from the plan'}</span></div>
-   ${pl!=='rest'?`<div class="btns" style="margin-top:10px"><button class="btn ${d.trained?'on':''}" data-train>${d.trained?SES[pl]+' done':'Mark '+SES[pl]+' done'}</button>${ab?`<button class="btn ${d.abs?'on':''}" data-abs>${d.abs?'Abs done':'Abs'}</button><i class="strict">no skip</i>`:''}</div>`:'<div class="hint">Walk, stretch, recover.</div>'}</div>
-  <div class="two"><div class="card"><div class="hd"><b>${ic('steps')}Steps</b></div><div class="field"><input id="steps" type="number" inputmode="numeric" min="0" step="100" value="${d.steps??''}" placeholder="0"></div><div class="hint">${(d.steps||0)>=S.settings.targets.steps?'<span class="ok-t">target hit</span>':`target ${kf(S.settings.targets.steps)}, from Google Fit before bed`}</div></div>
-   <div class="card"><div class="hd"><b>${ic('sleep')}Sleep</b></div><div class="field"><input id="sleep" type="number" inputmode="decimal" min="0" max="14" step="0.25" value="${d.sleep??''}" placeholder="0"><em>h</em></div><div class="hint">${d.sleep==null?`target ${S.settings.targets.sleep} h`:d.sleep>=S.settings.targets.sleep?'<span class="ok-t">on target</span>':'<span class="late-t">short</span>'}</div></div></div>
-  <div class="two">${k>=SWITCH?`<div class="card"><div class="hd"><b>${ic('work')}Study</b></div><div class="field"><input id="study" type="number" inputmode="decimal" min="0" max="16" step="0.25" value="${d.study??''}" placeholder="0"><em>h</em></div><div class="hint">${(d.study||0)>=S.settings.targets.study?'<span class="ok-t">target hit</span>':`target ${S.settings.targets.study} h, ${Math.round(Math.min((d.study||0)/S.settings.targets.study,1)*3*10)/10} of 3 pts`}</div></div>`:''}
+  <div class="card"><div class="hd"><b>${ic('water')}Water</b><span>under 3.25 L costs a point</span></div><div class="seg">${[['35','3.25 to 4 L'],['4','4 L or more']].map(([v,l])=>`<button data-water="${v}" class="${d.water===v?'on':''}">${l}</button>`).join('')}</div>${!d.water&&closed(k)?'<div class="hint miss-t">Not logged: −1 point</div>':''}</div>
+  <div class="card"><div class="hd"><b>${ic('gym')}Workout${tw.req&&!d.trained?'<i class="strict">needed today</i>':''}</b><span>${tw.c+(d.trained?1:0)} of ${tw.tg} this week</span></div>
+   <div class="chips">${LIFTS.map(l=>`<button class="chip ${d.trained&&d.ses===l?'on':''}" data-ses="${l}">${l==='recovery'?'Recovery':SES[l]}</button>`).join('')}</div>
+   <div class="btns" style="margin-top:10px"><button class="btn ${d.abs?'on':''}" data-abs>${d.abs?'Abs done':'Abs'}</button><span class="hint" style="margin:0">${ab.c+(d.abs?1:0)} of ${ab.tg} this week${ab.req&&!d.abs?', <b class="miss-t">needed today</b>':''}</span></div>
+   <div class="hint">${d.trained?(d.ses?'':'Workout done.'):tw.req?'No rest days left this week.':`Rest allowed today. ${tw.left-(tw.tg-tw.c)} rest day${tw.left-(tw.tg-tw.c)>1?'s':''} left this week.`} Any split, any day.</div></div>
+  <div class="two"><div class="card"><div class="hd"><b>${ic('steps')}Steps</b></div><div class="field"><input id="steps" type="number" inputmode="numeric" min="0" step="100" value="${d.steps??''}" placeholder="0"></div><div class="hint">${(d.steps||0)>=S.settings.targets.steps?'<span class="ok-t">target hit</span>':`${kf(S.settings.targets.steps)} full, under 8k scores 0`}</div></div>
+   <div class="card"><div class="hd"><b>${ic('sleep')}Sleep</b></div><div class="field"><input id="sleep" type="number" inputmode="decimal" min="0" max="14" step="0.25" value="${d.sleep??''}" placeholder="0"><em>h</em></div><div class="hint">${d.sleep==null?'not scored':d.sleep>=S.settings.targets.sleep?'<span class="ok-t">on target</span>':'<span class="late-t">short</span>'}</div></div></div>
+  <div class="two">${`<div class="card"><div class="hd"><b>${ic('work')}Study</b></div><div class="field"><input id="study" type="number" inputmode="decimal" min="0" max="16" step="0.25" value="${d.study??''}" placeholder="0"><em>h</em></div><div class="hint">${(d.study||0)>=S.settings.targets.study?'<span class="ok-t">target hit</span>':`target ${S.settings.targets.study} h, ${Math.round(Math.min((d.study||0)/S.settings.targets.study,1)*3*10)/10} of 3 pts`}</div></div>`}
    ${isCI(k)?'':`<div class="card"><div class="hd"><b>${ic('scale')}Weight</b></div><div class="field"><input id="weight" type="number" inputmode="decimal" step="0.05" min="30" max="150" value="${d.weight??''}" placeholder="—"><em>kg</em></div><div class="hint">every morning, after the washroom</div></div>`}</div>
   ${wTrend(k)?`<div class="card"><div class="hint" style="margin:0">${wVerdict(wTrend(k))}</div></div>`:''}
 </div>`;
-  app.innerHTML=h;first=false;fxBind()}
+  app.innerHTML=h;app.className=first?'in':'';first=false;fxBind()}
 function ciCard(k,d){const ok=ciOk(k),v=ciVoid(k),done=ciDone(k);
   return`<div class="card ci${v?' void':done?' done':''}"><div class="hd"><b>${ic('scale')}Measure, weigh, photograph</b><span>${v?'<b class="miss-t">missed: today scores 0</b>':done?(ok?'<b class="ok-t">done on time</b>':'<b class="miss-t">done late</b>'):'miss it and the whole day scores 0'}</span></div>
    <div class="mgrid"><label>weight (kg)<input id="weight" type="number" inputmode="decimal" step="0.05" value="${d.weight??''}" placeholder="—"></label>
@@ -451,21 +485,22 @@ function wVerdict(t){if(!t)return'';if(t.d==null||t.n<3)return`7-day average <b>
   const d=(t.d>0?'+':'')+t.d.toFixed(1);return`7-day average <b>${t.a.toFixed(1)}</b>, ${d} kg vs last week: `+(t.d<=-.5?'<span class="ok-t">on track</span>':t.d<0?'<span class="late-t">too slow, tighten 150 kcal or add 2k steps</span>':'<span class="miss-t">average up. That is fat, fix the week</span>')}
 function wh(w,p){const g=w-p,s=(g>0?'+':'')+g.toFixed(1);return g<=.3?` <span class="ok-t">on track (${s})</span>`:g<=1?` <span class="late-t">${s} kg vs plan</span>`:` <span class="miss-t">${s} kg, about a week behind</span>`}
 
-function graph(){const s0=S.settings.startDate,f0=add(s0,-((dow(s0)+6)%7)),cols=Math.ceil((diff(f0,END)+1)/7),T=tk(),c=15,g=3,L=18,Tp=14;
-  let s=`<svg class="gsvg" viewBox="0 0 ${L+cols*(c+g)} ${Tp+7*(c+g)}" role="img" aria-label="Every day of the cut by score">`;
-  ['M','','W','','F','','S'].forEach((l,i)=>{if(l)s+=`<text x="0" y="${Tp+i*(c+g)+11}">${l}</text>`});let lm=-1;
-  for(let j=0;j<cols;j++){const wk=add(f0,j*7),m=pK(wk).getUTCMonth();if(m!==lm){s+=`<text x="${L+j*(c+g)}" y="9">${MON[m]}</text>`;lm=m}
-    for(let r=0;r<7;r++){const k=add(wk,r);if(k<s0||k>END)continue;const x=L+j*(c+g),y=Tp+r*(c+g),ph=phase(k);
-      const cl=k>T?'fut':!peek(k)?(k<T?'lx':'l0'):'l'+lvl(score(k).f);
-      s+=`<rect class="${cl}${k===T?' today':''}" x="${x}" y="${y}" width="${c}" height="${c}" rx="3"><title>${fd(k)}${peek(k)?': '+Math.round(score(k).f*100):''}</title></rect>`;
-      if(k>T&&(ph==='deficit break'||ph==='ramadan'))s+=`<rect class="ph" x="${x+4}" y="${y+4}" width="${c-8}" height="${c-8}" rx="1.5"/>`}}
+/* the chain as a lunar calendar: one disc per day showing that night's moon, tinted by the day's score */
+const SYN=29.530588853,mph=t=>{const p=(t-947182440000)/864e5/SYN%1;return p<0?p+1:p};
+function shade(p,r){const c=Math.cos(2*Math.PI*p);return`<path class="sh"${p<.5?'':' transform="scale(-1 1)"'} d="M0 ${-r}A${r} ${r} 0 0 0 0 ${r}A${(r*Math.abs(c)).toFixed(1)} ${r} 0 0 ${c>0?0:1} 0 ${-r}Z"/>`}
+function graph(){const s0=S.settings.startDate,N=diff(s0,END)+1,T=tk(),C=15,g=22,r=9,L=40;
+  let s=`<svg class="gsvg" viewBox="0 0 ${L+C*g} ${Math.ceil(N/C)*g+2}" role="img" aria-label="Every day to Eid as that night's moon, tinted by score">`;
+  for(let i=0;i<N;i++){const k=add(s0,i),x=L+(i%C)*g+g/2,y=(i/C|0)*g+g/2+1,ph=phase(k);
+    if(i%C===0)s+=`<text x="0" y="${y+3}">${sd(k)}</text>`;
+    const cl=k>T?'fut':!peek(k)?(k<T?'lx':'l0'):'l'+lvl(score(k).f);
+    s+=`<g transform="translate(${x} ${y})"><circle class="${cl}${k===T?' today':''}" r="${r}"><title>${fd(k)}${peek(k)&&k<=T?': '+Math.round(score(k).f*100):''}</title></circle>${shade(mph(pK(k).getTime()+54e6),r)}${ph==='ramadan'?`<circle class="rm" r="${r+1.3}"/>`:ph==='deficit break'?`<circle class="bk" r="${r+1.3}"/>`:''}</g>`}
   return s+'</svg>'}
 
 /* ---------- debrief: rule-based, offline, read-only ---------- */
-const TIPS={ci:'Measure right after Fajr, before the study block. Tape and scale out the night before.',fajr:'Phone across the room, alarm 10 minutes earlier, wudu before checking anything.',study1:'Lay out the laptop and notes before bed so 5:45 needs no decisions.',
+const TIPS={gymx:'',ci:'Measure right after Fajr, before the study block. Tape and scale out the night before.',fajr:'Phone across the room, wudu before checking anything. At home counts half, the masjid counts full.',study1:'Lay out the laptop and notes before bed so 5:45 needs no decisions.',
  gym2:'Gym clothes by the door; leave at 7:15 even mid-topic.',gym:'Gym clothes by the door the night before.',nap:'Set the 9:45 alarm before lying down; sit up the moment it rings.',
- work:'Breakfast ready the night before; laptop open at 10:10.',zuhr:'Wudu when the 12:10 alarm rings, not after the next message.',juma:'Post status at 12:50 and walk out; nothing else.',jleave:'Draft the status at 12:30 so 12:50 is one tap.',
- asr:'Block Asr on your work calendar so nobody books over it.',maghrib:'Shoes by the door; leave at the alarm, not after the task.',isha:'Isha is on time only. Leave 10 minutes before jamaat.',
+ work:'Breakfast ready the night before; laptop open at 10:10.',zuhr:'The 1:15 alarm means stand up from the setup. Wudu first, the message can wait.',juma:'Post status at 12:50 and walk out; nothing else.',jleave:'Draft the status at 12:30 so 12:50 is one tap.',
+ asr:'Block Asr on your work calendar so nobody books over it.',maghrib:'Shoes by the door; leave at the alarm, not after the task.',isha:'Isha is on time only. Leave at 6:50, ten minutes before jamaat.',
  wend:'At the 7:30 alarm write tomorrow\'s first task, then close the laptop.',bed:'Charger outside the bedroom; phone goes there at 9:00.',study:'Protect the first study block.',
  meals:'Cook or portion tomorrow\'s three meals tonight. No decisions when hungry.',snack:'Pre-portion tomorrow\'s snack; nothing else in reach.',water:'1 L before the gym, 1 L by Zuhr, 1 L by Maghrib.',
  train:'The session is on the plan. Go even at half intensity; showing up is the habit.',abs:'Abs first, before the main session, so they never get skipped.',
@@ -477,14 +512,15 @@ function patterns(k){const ds=last7(k),out=[],cnt={},app={};
   for(const id in cnt)if(cnt[id]>=3){const w=S.settings.windows.find(q=>q.id===id);out.push(`${w.label}: missed or late ${cnt[id]} of ${app[id]}`)}
   const c=f=>ds.filter(f).length,D=x=>S.days[x],T=S.settings.targets;
   const sn=c(x=>D(x).snack==='over');if(sn>=3)out.push(`Snack over plan ${sn} of ${ds.length} days`);
-  const wa=c(x=>!D(x).water&&closed(x));if(wa>=3)out.push(`Water under 3.5 L ${wa} of ${ds.length} days`);
-  const sd2=ds.filter(x=>x>=SWITCH),su=sd2.filter(x=>(D(x).study||0)<2).length;if(su>=3)out.push(`Study under 2 h ${su} of ${sd2.length} days`);
+  const wa=c(x=>!D(x).water&&closed(x));if(wa>=3)out.push(`Water under 3.25 L ${wa} of ${ds.length} days`);
+  const sd2=ds,su=sd2.filter(x=>(D(x).study||0)<2).length;if(su>=3)out.push(`Study under 2 h ${su} of ${sd2.length} days`);
   const sl=c(x=>(D(x).sleep||0)<T.sleep&&D(x).sleep!=null);if(sl>=3)out.push(`Short sleep ${sl} of ${ds.length} nights`);
-  for(const x of ds){const pl=plan(x);if(STRICT.includes(pl)&&!D(x).trained&&closed(x))out.push(`No-skip ${SES[pl]} missed on ${fd(x)}`);if(absP(x)&&!D(x).abs&&closed(x))out.push(`No-skip abs missed on ${fd(x)}`)}
+  const rd=ds.filter(red).length;if(rd)out.push(`${rd} red fitness day${rd>1?'s':''} this week`);
+  for(const x of ds)if(closed(x)&&!D(x).trained&&wkNeed(x,y=>y.trained,T.wk||5).req)out.push(`Needed workout skipped on ${fd(x)}`);
   return out}
-function pace(k){const j=jT(k),n=Math.max(1,Math.min(JFULL,diff(S.settings.startDate,k)+1)),exp=n/JFULL,ds=last7(k),a=ds.length?ds.reduce((s,x)=>s+score(x).f,0)/7:0;
-  const rem=(1-j.c)*JFULL*.75,dl=Math.max(1,diff(k,JEND)),need=Math.min(1,rem/dl);let eta=null;if(a>0)eta=add(k,Math.ceil(rem/a));
-  const behind=Math.round((exp-j.c)*JFULL);
+function pace(k){const j=jT(k),n=Math.max(1,Math.min(JF(),diff(S.settings.startDate,k)+1)),exp=n/JF(),ds=last7(k),a=ds.length?ds.reduce((s,x)=>s+score(x).f,0)/7:0;
+  const rem=(1-j.c)*JF()*.75,dl=Math.max(1,diff(k,JEND)),need=Math.min(1,rem/dl);let eta=null;if(a>0)eta=add(k,Math.ceil(rem/a));
+  const behind=Math.round((exp-j.c)*JF());
   return`Journey ${Math.round(j.c*100)}% vs ${Math.round(exp*100)}% expected${behind>0?`, <b class="miss-t">${behind} day${behind>1?'s':''} behind</b>`:behind<0?`, <b class="ok-t">${-behind} ahead</b>`:''}. `+
    (j.c>=1?'All six filled.':a===0?'No scores this week yet.':eta<=JEND?`At this week's average (${Math.round(a*100)}), all six abs by <b>${sd(eta)}</b>.`:`At this week's average (${Math.round(a*100)}) all six fill by ${sd(eta)}, after Feb 7. <b class="miss-t">Average ${Math.round(need*100)}+ from here to make it.</b>`)}
 function fix(k){const tot={};for(const x of last7(k))for(const q of parts(x)){const lost=q.p-q.e;if(lost>0)tot[q.id]=(tot[q.id]||0)+lost}
@@ -504,19 +540,19 @@ function report(){const T=tk();let we=add(T,-1);while(dow(we)!==3)we=add(we,-1);
   const ks=[];for(let k=ws;k<=we;k=add(k,1))if(k>=s0)ks.push(k);
   const sc=ks.map(k=>peek(k)?score(k).f:0),a=sc.reduce((x,y)=>x+y,0)/ks.length,d60=sc.filter(f=>f>=.6).length;
   let sm=0,sa=0;const miss={},appl={};for(const k of ks)for(const w of winsFor(k)){const s=st(k,w);appl[w.id]=(appl[w.id]||0)+1;if(s==='missed'||s==='late')miss[w.id]=(miss[w.id]||0)+1;if(w.kind==='salah'){sa++;if(s==='ontime')sm++}}
-  const stu=ks.reduce((x,k)=>x+(peek(k)?.study||0),0),stuT=ks.filter(k=>k>=SWITCH).length*S.settings.targets.study;
-  let nd=0,np=0;for(const k of ks){const pl=plan(k);if(STRICT.includes(pl)){np++;if(peek(k)?.trained)nd++}if(absP(k)){np++;if(peek(k)?.abs)nd++}}
+  const stu=ks.reduce((x,k)=>x+(peek(k)?.study||0),0),stuT=ks.length*S.settings.targets.study;
+  const TT=S.settings.targets,nd=ks.filter(k=>peek(k)?.trained).length,np=Math.round((TT.wk||5)*ks.length/7),na=ks.filter(k=>peek(k)?.abs).length,rdw=ks.filter(red).length;
   const wt=wTrend(we),weak=Object.entries(miss).map(([id,m])=>[id,m/appl[id]]).sort((x,y)=>y[1]-x[1]).slice(0,2);
-  const j=jT(we),exp=(diff(s0,we)+1)/JFULL,beh=Math.round((exp-j.c)*JFULL);
+  const j=jT(we),exp=(diff(s0,we)+1)/JF(),beh=Math.round((exp-j.c)*JF());
   const v=beh<=0?(beh<0?`<b class="ok-t">Ahead by ${-beh} day${beh<-1?'s':''}</b>`:'<b class="ok-t">On pace</b>'):`<b class="miss-t">Behind by about ${beh} day${beh>1?'s':''}</b>`;
   const row=(l,r)=>`<div class="dbr"><span>${l}</span><b>${r}</b></div>`;
-  return`<h2>Weekly report card <em>${sd(ws)} to ${sd(we)}</em></h2><div class="card db"><div class="dbh"><span class="gr" style="color:${a<.6?'var(--miss)':'var(--h2)'}">${grade(a)}</span><div><b>${Math.round(a*100)} average</b><div class="hint" style="margin:0">${v}</div></div></div><div class="dbs">
-   ${row('Days at 60+',`${d60} / ${ks.length}`)}${row('Salah at masjid, on time',`${sm} / ${sa}`)}${stuT?row('Study hours',`${Math.round(stu*10)/10} / ${stuT}`):''}${row('No-skip sessions',`${nd} / ${np}`)}
+  return`<h2>Weekly report card <em>${sd(ks[0])} to ${sd(we)}</em></h2><div class="card db"><div class="dbh"><span class="gr" style="color:${a<.6?'var(--miss)':'var(--h2)'}">${grade(a)}</span><div><b>${Math.round(a*100)} average</b><div class="hint" style="margin:0">${v}</div></div></div><div class="dbs">
+   ${row('Days at 60+',`${d60} / ${ks.length}`)}${row('Salah at masjid, on time',`${sm} / ${sa}`)}${stuT?row('Study hours',`${Math.round(stu*10)/10} / ${stuT}`):''}${row('Workouts',`${nd} / ${np}`)}${row('Abs',`${na} / ${Math.round((TT.abs||2)*ks.length/7)}`)}${row('Red fitness days',`${rdw} / ${ks.length}`)}
    ${wt&&wt.d!=null?row('Weight, 7-day average',`${wt.a.toFixed(1)} kg (${wt.d>0?'+':''}${wt.d.toFixed(1)}), plan ${planW(we).toFixed(1)}`):''}
    ${weak.length?row('Weakest windows',weak.map(([id,r])=>`${esc(S.settings.windows.find(w=>w.id===id).label)} ${Math.round(r*100)}%`).join(', ')):''}</div></div>`}
 /* ---------- motion: embers off the live arc, bursts on wins ---------- */
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let cv,cx,ps=[],raf=0,tick=0;
-function fxBind(){cv=document.getElementById('fx');if(!cv)return;const r=cv.getBoundingClientRect(),dp=Math.min(2,devicePixelRatio||1);cv.width=r.width*dp;cv.height=r.height*dp;cx=cv.getContext('2d');cx.setTransform(dp,0,0,dp,0,0);if(!RM&&!raf)raf=requestAnimationFrame(loop)}
+function fxBind(){skyBind();cv=document.getElementById('fx');if(!cv)return;const r=cv.getBoundingClientRect(),dp=Math.min(2,devicePixelRatio||1);cv.width=r.width*dp;cv.height=r.height*dp;cx=cv.getContext('2d');cx.setTransform(dp,0,0,dp,0,0);if(!RM&&!raf)raf=requestAnimationFrame(loop)}
 function toPx(x,y){const w=cv.getBoundingClientRect().width,sc=(w-60)/320;return[30+x*sc,30+y*sc]}
 const COL=['255,194,74','255,107,53','232,67,122','255,240,200'];
 function loop(){raf=0;if(!cv||!cv.isConnected||document.hidden)return;cx.clearRect(0,0,cv.width,cv.height);
@@ -529,17 +565,66 @@ function burst(id,big){try{navigator.vibrate?.(big?[20,50,20,50,40]:[15,40,25])}
     for(let q=0;q<(big?14:36);q++){const v=1+Math.random()*2.6,b=Math.random()*7,p={x,y,vx:Math.cos(b)*v,vy:Math.sin(b)*v-1,life:50+Math.random()*30,sz:1.4+Math.random()*2,g:.05,c:COL[Math.random()*4|0]};p.max=p.life;ps.push(p)}}
   if(!raf)raf=requestAnimationFrame(loop)}
 
+/* ---------- the sky: one fragment shader, lit by the real sun over Lahore and the real moon phase. CSS sky is the fallback ---------- */
+const FS=`#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+uniform vec2 R,S,M;uniform float T,E,P;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+1.),f.x),f.y);}
+float fb(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*n(p);p=p*2.03+7.;a*=.5;}return v;}
+void main(){vec2 u=gl_FragCoord.xy/R;float a=R.x/R.y;vec2 q=vec2(u.x*a,u.y);
+float d=smoothstep(-.08,.3,E),tw=1.-smoothstep(0.,.3,abs(E-.03)),ng=1.-smoothstep(-.28,-.04,E);
+vec3 top=mix(vec3(.015,.025,.085),vec3(.06,.22,.47),d),bot=mix(vec3(.1,.09,.26),vec3(.48,.7,.85),d);
+top=mix(top,vec3(.09,.09,.28),tw*.7);bot=mix(bot,vec3(1.,.48,.24),tw);
+vec3 c=mix(bot,top,pow(u.y,.7));
+c+=vec3(.75,.2,.38)*tw*.4*exp(-abs(u.y-.4)*4.5);
+vec2 g=q*46.,id=floor(g);float r=h(id);
+c+=smoothstep(.1,0.,length(fract(g)-.5-(vec2(h(id+3.),h(id+7.))-.5)*.7))*step(.86,r)*(.5+.5*sin(T*(1.+r*3.)+r*40.))*ng*smoothstep(.15,.6,u.y);
+float ds=length(q-vec2(S.x*a,S.y));
+c+=vec3(1.,.7,.34)*(.4*exp(-ds*3.5)+.3*exp(-ds*12.))*smoothstep(-.3,.05,E)+vec3(1.,.95,.8)*smoothstep(.06,.048,ds);
+vec2 w=(q-vec2(M.x*a,M.y))/.062;float dm=length(w),mv=1.-smoothstep(-.12,.06,E),il=.5-.5*cos(P*6.2832);
+float lit=smoothstep(-.07,.07,(P<.5?w.x:-w.x)-cos(P*6.2832)*sqrt(max(0.,1.-w.y*w.y)));
+c+=vec3(.5,.56,.75)*exp(-dm*1.5)*.3*mv*(.35+.65*il);
+c=mix(c,mix(c+vec3(.02,.022,.035),vec3(.97,.95,.87)*(.8+.2*n(w*2.6+3.)),lit),smoothstep(1.,.93,dm)*mv);
+float cl=smoothstep(.5,.82,fb(vec2(q.x*2.4+T*.012,q.y*5.5)))*smoothstep(.1,.45,u.y)*(1.-.4*u.y);
+c=mix(c,mix(mix(vec3(.13,.14,.27),vec3(1.),d),vec3(1.,.62,.45),tw*.8),cl*.45);
+c+=(h(gl_FragCoord.xy+fract(T))-.5)*.018;
+gl_FragColor=vec4(c,1.);}`;
+let skyC,gl=null,sU={},skyRAF=0,skyF=0,skyMs=0;
+function skyInit(){try{skyC=document.createElement('canvas');skyC.id='sky';gl=skyC.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power'});if(!gl)return;
+  const sh=(t,x)=>{const o=gl.createShader(t);gl.shaderSource(o,x);gl.compileShader(o);return o},pr=gl.createProgram();
+  gl.attachShader(pr,sh(gl.VERTEX_SHADER,'attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}'));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){gl=null;return}
+  gl.useProgram(pr);gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  const l=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,2,gl.FLOAT,false,0,0);
+  for(const x of'RSMTEP')sU[x]=gl.getUniformLocation(pr,x);
+  skyC.addEventListener('webglcontextlost',()=>{gl=null;skyC.remove();if(tab==='today')render()})}catch(e){gl=null}}
+/* sun elevation and hour angle at Lahore (31.52 N, 74.36 E) */
+function solar(ms){const d=new Date(ms),n=(ms-Date.UTC(d.getUTCFullYear(),0,0))/864e5,g=2*Math.PI/365*(n-81),dec=.4093*Math.sin(g),eot=9.87*Math.sin(2*g)-7.53*Math.cos(g)-1.5*Math.sin(g),
+  ha=((d.getUTCHours()*60+d.getUTCMinutes()+eot+297.44)/4-180)*Math.PI/180,la=.5501;return{el:Math.asin(Math.sin(la)*Math.sin(dec)+Math.cos(la)*Math.cos(dec)*Math.cos(ha)),ha}}
+const nz=x=>Math.atan2(Math.sin(x),Math.cos(x));
+function skyDraw(t){if(!gl)return;const s=solar(skyMs),a=nz(s.ha),m=nz(s.ha-Math.PI);
+  gl.uniform2f(sU.R,skyC.width,skyC.height);gl.uniform2f(sU.S,.5+a/3,.13+s.el*1.05);gl.uniform2f(sU.M,.5+m/3.6,.5+.32*Math.cos(m*.8));
+  gl.uniform1f(sU.T,t/1000);gl.uniform1f(sU.E,s.el);gl.uniform1f(sU.P,mph(skyMs));gl.drawArrays(gl.TRIANGLES,0,3)}
+function skyLoop(t){skyRAF=0;if(!gl||!skyC.isConnected||document.hidden)return;if(skyF++&1)skyDraw(t);skyRAF=requestAnimationFrame(skyLoop)}
+function skyBind(){const h=document.getElementById('hero');if(!gl||!h)return;if(skyC.parentNode!==h)h.prepend(skyC);
+  const r=h.getBoundingClientRect(),w=Math.round(r.width),ht=Math.round(r.height);if(skyC.width!==w||skyC.height!==ht){skyC.width=w;skyC.height=ht;gl.viewport(0,0,w,ht)}
+  skyDraw(performance.now());if(!RM&&!skyRAF)skyRAF=requestAnimationFrame(skyLoop)}
+
 /* ---------- marking ---------- */
 const sheet=document.getElementById('sheet');let sf=null;
-function ask(id,qaza){const w=S.settings.windows.find(x=>x.id===id),sal=w.kind==='salah';sf={id,w};
-  const opts=qaza?[['qaza','Prayed qaza']]:sal?(w.masjid==='only'?[['done','Prayed at the masjid']]:[['done','At the masjid'],['else','Prayed elsewhere']]):[['done','Done']];
+function ask(id,qaza,sw){const w=S.settings.windows.find(x=>x.id===id),sal=w.kind==='salah';sf={id,w,sw};
+  const opts=qaza?[['qaza','Prayed qaza']]:sal?(w.masjid==='only'?[['done','Prayed at the masjid']]:[['done','At the masjid'],['else','At home, not the masjid']]):[['done','Done']];
   sheet.innerHTML=`<div class="shc" role="dialog" aria-label="${esc(w.label)}"><div class="k">${esc(w.label)}</div>
    ${sal&&w.masjid==='only'&&!qaza?'<div class="q">Counts only when prayed at the masjid.</div>':''}
    <div class="btns">${opts.map(([v,l],i)=>`<button class="btn ${i?'':'on'}" data-how="${v}">${l}</button>`).join('')}<button class="btn" data-how="cancel">Cancel</button></div></div>`;
   sheet.hidden=false}
-sheet.addEventListener('click',e=>{const b=e.target.closest('[data-how]');if(!b&&e.target!==sheet)return;const how=b?.dataset.how||'cancel',f=sf;sheet.hidden=true;sf=null;if(how!=='cancel')commit(f.id,how)});
-function commit(id,how){const d=day(vk),w=S.settings.windows.find(x=>x.id===id),isT=vk===tk(),wasFull=winsFor(vk).every(x=>PTS[st(vk,x)]);
-  d.slots[id]=how==='skip'?{how}:{t:isT?now():toMin(w.end)+1,how,end:w.end};
+sheet.addEventListener('click',e=>{const b=e.target.closest('[data-how]');if(!b&&e.target!==sheet)return;const how=b?.dataset.how||'cancel',f=sf;sheet.hidden=true;sf=null;if(how!=='cancel')commit(f.id,how,f.sw)});
+function commit(id,how,sw){const d=day(vk),w=S.settings.windows.find(x=>x.id===id),isT=vk===tk(),wasFull=winsFor(vk).every(x=>PTS[st(vk,x)]);
+  d.slots[id]=how==='skip'?{how}:{t:sw?toMin(w.end):isT?now():toMin(w.end)+1,how,end:w.end};
   save();render();if(how==='skip'){toast('Logged as missed');return}
   const full=!wasFull&&winsFor(vk).every(x=>PTS[st(vk,x)]),s=st(vk,w);
   burst(id,full);toast(full?'Full ring. Every window done':s==='ontime'?`+${w.w} points`:`+${(PTS[s]*w.w).toFixed(1).replace(/\.0$/,'')} points`)}
@@ -548,18 +633,24 @@ function toast(t){const e=document.getElementById('toast');e.textContent=t;e.cla
 document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;tab=b.dataset.tab;armed=false;if(tab==='today'){vk=tk();first=true}render();scrollTo(0,0)});
 app.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const D=b.dataset,k=vk;
   if(D.face!=null)return setFace(+D.face);
-  if(D.act==='prev'){vk=add(k,-1);return render()}
+  if(D.act==='prev'){if(k>S.settings.startDate)vk=add(k,-1);return render()}
   if(D.act==='next'){if(k<tk())vk=add(k,1);return render()}
   if(D.act==='today'){vk=tk();return render()}
-  if(D.mark){const w=S.settings.windows.find(x=>x.id===D.mark);return w.kind==='salah'?ask(D.mark):commit(D.mark,'done')}
+  const early=w=>k===tk()&&w.kind==='salah'&&now()<toMin(w.start)+10;
+  if(D.mark){const w=S.settings.windows.find(x=>x.id===D.mark);if(early(w))return toast('Mark it after you pray');return w.kind==='salah'?ask(D.mark):commit(D.mark,'done')}
+  if(D.sweep){const w=S.settings.windows.find(x=>x.id===D.sweep);return w.kind==='salah'?ask(D.sweep,false,true):commit(D.sweep,'done',true)}
+  if('coach' in D){const c=S.settings.coach,ph=(c.phone||'').replace(/\D/g,'').replace(/^0/,'92');if(!ph){tab='settings';render();scrollTo(0,document.body.scrollHeight);return toast('Add the coach\'s number first')}
+    const lw=Object.keys(S.days).filter(x=>S.days[x].weight).sort().pop(),txt=(c.text||COACH_TXT).replace('{kg}',lw?wAvg(lw).a.toFixed(1):'?').replace('{n}',redRun().n);
+    c.sent=tk();save();window.open('https://wa.me/'+ph+'?text='+encodeURIComponent(txt),'_blank');return render()}
   if(D.qaza)return ask(D.qaza,true);
   if(D.skip)return commit(D.skip,'skip');
   if(D.tog){const d=day(k),w=S.settings.windows.find(x=>x.id===D.tog);if(d.slots[D.tog]){delete d.slots[D.tog];save();toast('Unmarked');return render()}
-    if(st(k,w)==='qazaable')return ask(w.id,true);return w.kind==='salah'?ask(w.id):commit(w.id,'done')}
+    if(st(k,w)==='qazaable')return ask(w.id,true);if(early(w))return toast('Mark it after you pray');return w.kind==='salah'?ask(w.id):commit(w.id,'done')}
   const d=day(k);
   if(D.meal){(d.meals||(d.meals={}))[D.meal]=!d.meals[D.meal];save();return render()}
   if(D.snack){d.snack=d.snack===D.snack?null:D.snack;save();return render()}
   if(D.water){d.water=d.water===D.water?null:D.water;save();return render()}
+  if(D.ses){const nw=!d.trained;if(d.trained&&d.ses===D.ses){d.trained=false;delete d.ses}else{d.trained=true;d.ses=D.ses}save();render();if(nw)burst('',false);return}
   if('train' in D){d.trained=!d.trained;save();render();if(d.trained)burst('',false);return}
   if('abs' in D){d.abs=!d.abs;save();return render()}
   if('photos' in D){d.photos=!d.photos;ciStamp(k);save();render();if(ciDone(k))burst('',false);return}
@@ -580,13 +671,15 @@ app.addEventListener('change',e=>{const t=e.target,k=vk,num=t.value===''?null:+t
   if(t.id==='study'){day(k).study=num;save();return render()}
   if(t.id==='weight'){day(k).weight=num==null?null:Math.round(num*100)/100;ciStamp(k);save();return render()}
   if(t.dataset.meas){const d=day(k);(d.meas||(d.meas={}))[t.dataset.meas]=num;if(num==null)delete d.meas[t.dataset.meas];ciStamp(k);save();return render()}
+  if(t.id==='cphone'){S.settings.coach.phone=t.value.trim();save();return}
+  if(t.id==='ctext'){S.settings.coach.text=t.value;save();return}
   if(t.id==='startDate'&&t.value){S.settings.startDate=t.value;save();return}
   if(t.id==='ciby'&&t.value){S.settings.checkinBy=t.value;save();return}
   if(t.dataset.mf){const m=S.settings.measures.find(x=>x.id===t.closest('[data-mid]').dataset.mid);if(m){m.name=t.value;save()}return}
   if(t.id==='impf'&&t.files[0]){const r=new FileReader();r.onload=()=>restore(r.result);r.readAsText(t.files[0]);return}
   const wr=t.closest('[data-wid]');if(wr&&t.dataset.f){const w=S.settings.windows.find(x=>x.id===wr.dataset.wid),f=t.dataset.f;let v=t.value;if((f==='start'||f==='end')&&!v)return;
     w[f]=v;if(toMin(w.end)<toMin(w.start)){if(f==='start')w.end=w.start;else w.start=w.end}save();if(f!=='label')render();return}
-  if(t.dataset.t){if(+t.value>0){S.settings.targets[t.dataset.t]=+t.value;save()}return}
+  if(t.dataset.t){if(+t.value>=0){S.settings.targets[t.dataset.t]=+t.value;save()}return}
   if(t.dataset.split!=null){S.settings.split[t.dataset.split]=t.value;save();return}
   if(t.dataset.abd!=null){const i=+t.dataset.abd,a=S.settings.absDays;S.settings.absDays=t.checked?[...new Set([...a,i])]:a.filter(x=>x!==i);save()}});
 app.addEventListener('input',e=>{const t=e.target;if(t.dataset.f==='label'){const w=S.settings.windows.find(x=>x.id===t.closest('[data-wid]').dataset.wid);if(w){w.label=t.value;save()}}});
@@ -598,18 +691,18 @@ function trends(){const ks=rk(),T=S.settings.targets;
   let h=`<div class="title">Trends</div>${report()}<div class="seg">${[[7,'7 days'],[14,'14 days'],[28,'28 days'],['all','All']].map(([v,l])=>`<button data-range="${v}" class="${range===v?'on':''}">${l}</button>`).join('')}</div>`;
   if(!ks.length){app.innerHTML=h+`<p class="hint" style="margin:16px 4px">Day 1 is ${fd(S.settings.startDate)}. Trends fill in from there.</p>`+wcard([])+mtable();return}
   const lg=ks.filter(k=>peek(k)),sc=ks.map(k=>peek(k)?score(k).f*100:null),ST=ks.map(k=>peek(k)?.steps??null),SL=ks.map(k=>peek(k)?.sleep??null);
-  const lw=Object.keys(S.days).filter(k=>S.days[k].weight).sort().pop(),cw=lw?wAvg(lw).a:START_W,SD=ks.map(k=>k>=SWITCH?peek(k)?.study??null:null);
+  const lw=Object.keys(S.days).filter(k=>S.days[k].weight).sort().pop(),cw=lw?wAvg(lw).a:START_W,SD=ks.map(k=>peek(k)?.study??null);
   const meals=lg.reduce((a,k)=>a+['bf','lu','di'].filter(x=>S.days[k].meals?.[x]).length,0),water=lg.filter(k=>S.days[k].water).length;
   h+=`<h2>Summary <em>${sd(ks[0])} to ${sd(ks[ks.length-1])}</em></h2><div class="tiles">
    <div class="tile"><span>average score</span><b>${avg(sc)==null?'–':Math.round(avg(sc))}<small> / 100</small></b></div>
    <div class="tile"><span>kg down</span><b>${(START_W-cw).toFixed(1)}<small> / ${(START_W-GOAL_W).toFixed(1)}</small></b></div>
    <div class="tile"><span>clean meals</span><b>${meals}<small> / ${lg.length*3}</small></b></div>
-   <div class="tile"><span>water 3.5 L+</span><b>${water}<small> / ${lg.length} days</small></b></div>
+   <div class="tile"><span>water 3.25 L+</span><b>${water}<small> / ${lg.length} days</small></b></div>
    <div class="tile"><span>average steps</span><b>${avg(ST)==null?'–':kf(Math.round(avg(ST)))}<small> / ${kf(T.steps)}</small></b></div>
    <div class="tile"><span>average study</span><b>${avg(SD)==null?'–':avg(SD).toFixed(1)}<small> / ${T.study} h</small></b></div>
    <div class="tile"><span>days at step target</span><b>${lg.filter(k=>(S.days[k].steps||0)>=T.steps).length}<small> / ${lg.length}</small></b></div></div>`;
   h+=wcard(ks)+mtable()+`<h2>Day score</h2><div class="card">${bars(ks,sc,60,v=>Math.round(v))}</div>`;
-  const C=[['ontime','var(--h2)','masjid, on time'],['late','var(--late)','late'],['home','var(--h1)','elsewhere'],['qaza','#B38BFA','qaza'],['missed','var(--miss)','missed']];
+  const C=[['ontime','var(--h2)','masjid, on time'],['late','var(--late)','late'],['home','var(--h1)','home'],['qaza','#B38BFA','qaza'],['missed','var(--miss)','missed']];
   h+=`<h2>Salah</h2><div class="card">`;
   for(const id of['fajr','zuhr','juma','asr','maghrib','isha']){const w=S.settings.windows.find(x=>x.id===id);if(!w)continue;const cnt={};let n=0;
     for(const k of ks){if(!w.days.includes(dow(k)))continue;const s=st(k,w);cnt[s]=(cnt[s]||0)+1;if(!['todo','open','qazaable'].includes(s))n++}
@@ -632,7 +725,7 @@ function wcard(ks){const T=tk(),lo=ks.length&&range!=='all'?ks[0]:PLAN[0][0],h0=
   s+=`<path d="${P(pp)}" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4"/>`;const av=pts.map(p=>[p[0],wAvg(p[0]).a]);pts.forEach(p=>s+=`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="2.5" fill="var(--h2)" opacity=".55"><title>${sd(p[0])}: ${p[1]} kg</title></circle>`);if(av.length>1)s+=`<path d="${P(av)}" fill="none" stroke="var(--h2)" stroke-width="2.5"/>`;
   if(T>=lo&&T<=hi)s+=`<line x1="${X(T)}" x2="${X(T)}" y1="${pt}" y2="${pt+ch}" stroke="var(--h2)" opacity=".35"/>`;
   s+=`<text x="${pl}" y="${H-4}">${sd(lo)}</text><text x="${W-pr}" y="${H-4}" text-anchor="end">${sd(hi)}</text></svg>`;const l=pts[pts.length-1];
-  return`<h2>Weight vs plan</h2><div class="card">${s}<div class="legend"><span><i style="background:var(--h2)"></i>7-day average, dots daily</span><span><i style="background:var(--muted)"></i>plan to ${GOAL_W} kg</span></div><div class="hint">${l?`7-day average ${wAvg(l[0]).a.toFixed(1)} kg on ${sd(l[0])}, plan ${planW(l[0]).toFixed(1)}${wh(wAvg(l[0]).a,planW(l[0]))}`:'No weigh-ins yet. Weigh every morning.'}</div></div>`}
+  return`<h2>Weight vs plan</h2><div class="card">${s}<div class="legend"><span><i style="background:var(--h2)"></i>7-day average, dots daily</span><span><i style="background:var(--muted)"></i>plan: 61 by Ramadan, 59 by Eid</span></div><div class="hint">${l?`7-day average ${wAvg(l[0]).a.toFixed(1)} kg on ${sd(l[0])}, plan ${planW(l[0]).toFixed(1)}${wh(wAvg(l[0]).a,planW(l[0]))}`:'No weigh-ins yet. Weigh every morning.'}</div></div>`}
 /* body: weight + measurements. Latest value, change vs each earlier Thursday, and the full dated log */
 function mtable(){const rows=[{id:'_w',name:'Body weight',short:'Weight',dir:'down',u:'kg'},...S.settings.measures];
   const val=(k,r)=>{const d=S.days[k];return r.id==='_w'?d.weight??null:d.meas?.[r.id]??null};
@@ -647,12 +740,12 @@ function mtable(){const rows=[{id:'_w',name:'Body weight',short:'Weight',dir:'do
   h+=`</tbody></table></div><div class="legend"><span><i style="background:var(--ok)"></i>toward your goal</span><span><i style="background:var(--miss)"></i>away from it</span><span>weight in kg</span></div>`;
   h+=`<details class="log"><summary>Full log by date</summary><div style="overflow-x:auto"><table class="mt"><thead><tr><th>date</th>${rows.map(r=>`<th>${esc(r.short)}</th>`).join('')}</tr></thead><tbody>${[...ks].reverse().map(k=>`<tr><td style="white-space:nowrap">${sd(k)}</td>${rows.map(r=>`<td>${val(k,r)??'–'}</td>`).join('')}</tr>`).join('')}</tbody></table></div></details></div>`;
   return h}
-function tgrid(ks){const T=tk(),f=ks[0],s0=add(f,-((dow(f)+6)%7)),wks=[];for(let w=s0;w<=ks[ks.length-1];w=add(w,7))wks.push(w);
-  let h=`<div style="overflow-x:auto"><table class="wk"><thead><tr><th>week of</th>${LIFTS.map(l=>`<th>${l==='recovery'?'recov.':SES[l].toLowerCase()}</th>`).join('')}<th>abs</th></tr></thead><tbody>`;
-  for(const w of wks){const ds=[...Array(7)].map((_,i)=>add(w,i)).filter(k=>k>=S.settings.startDate);if(!ds.length)continue;h+=`<tr><td>${sd(w)}</td>`;
-    for(const l of LIFTS){const pd=ds.filter(k=>plan(k)===l),done=pd.some(k=>peek(k)?.trained),due=pd.some(k=>k<T);h+=`<td><span class="dot ${done?'y':!pd.length?'n':due?(STRICT.includes(l)?'m':''):'p'}"></span></td>`}
-    const an=ds.filter(k=>absP(k)&&peek(k)?.abs).length,ap=ds.filter(absP).length,am=ds.some(k=>absP(k)&&k<T&&!peek(k)?.abs);h+=`<td style="font-weight:700;${am?'color:var(--miss)':an>=ap&&ap?'color:var(--h2)':''}">${an}/${ap}</td></tr>`}
-  return h+`</tbody></table></div><div class="legend"><span><i style="background:var(--h2)"></i>done</span><span><i style="background:var(--miss-bg);outline:1.5px solid var(--miss)"></i>no-skip day missed</span><span><i style="outline:1.5px dashed var(--line)"></i>not due yet</span></div>`}
+function tgrid(ks){const T=tk(),TT=S.settings.targets,wks=[];for(let w=wkStart(ks[0]);w<=ks[ks.length-1];w=add(w,7))wks.push(w);
+  let h=`<div style="overflow-x:auto"><table class="wk"><thead><tr><th>week of</th><th>workouts</th><th>legs</th><th>abs</th><th>red days</th></tr></thead><tbody>`;
+  for(const w of wks){const ds=[...Array(7)].map((_,i)=>add(w,i)).filter(k=>k>=S.settings.startDate);if(!ds.length)continue;
+    const n=ds.length,tg=Math.round((TT.wk||5)*n/7),ta=Math.round((TT.abs||2)*n/7),c=ds.filter(k=>peek(k)?.trained).length,a=ds.filter(k=>peek(k)?.abs).length,lg=ds.some(k=>peek(k)?.ses==='legs'),r=ds.filter(red).length,past=add(w,6)<T,col=(x,t)=>x>=t?'color:var(--h2)':past?'color:var(--miss)':'';
+    h+=`<tr><td>${sd(w)}</td><td style="font-weight:700;${col(c,tg)}">${c}/${tg}</td><td><span class="dot ${lg?'y':past?'m':'p'}"></span></td><td style="font-weight:700;${col(a,ta)}">${a}/${ta}</td><td style="font-weight:700;${r?'color:var(--miss)':''}">${r}</td></tr>`}
+  return h+`</tbody></table></div><div class="legend"><span><i style="background:var(--h2)"></i>target hit</span><span><i style="background:var(--miss-bg);outline:1.5px solid var(--miss)"></i>missed</span><span>legs: at least once a week</span></div>`}
 
 /* ---------- settings ---------- */
 function settings(){const s=S.settings,T=s.targets;let h=`<div class="title">Settings</div><h2>Windows <em>Pakistan time</em></h2><div class="card">`;
@@ -663,8 +756,10 @@ function settings(){const s=S.settings,T=s.targets;let h=`<div class="title">Set
    <div class="hint" style="margin:0">×${w.w} points, ${w.rule==='strict'?'on time only':'markable up to 1 hour after close'}${w.masjid==='only'?', masjid only':w.masjid==='pref'?', masjid preferred':''}${w.qaza?', Sunday qaza allowed':''}${w.from?`, from ${sd(w.from)}`:''}${w.until?`, until ${sd(w.until)}`:''}</div></div>`});
   h+=`<div class="btns" style="margin-top:12px"><button class="btn" data-addwin>Add window</button></div><div class="hint">Salah times move about 35 minutes by February. Update them on the 1st of each month.</div></div>
   <h2>Targets</h2><div class="card set"><div class="two"><label>sleep (h)<input id="t-sleep" data-t="sleep" type="number" step="0.25" value="${T.sleep}"></label><label>steps<input id="t-steps" data-t="steps" type="number" step="500" value="${T.steps}"></label><label>study (h)<input id="t-study" data-t="study" type="number" step="0.25" value="${T.study||3}"></label></div></div>
-  <h2>Training week</h2><div class="card set">${[1,2,3,4,5,6,0].map(i=>`<div class="split"><span>${DOW[i]}</span><select id="sp-${i}" data-split="${i}">${Object.entries(SES).map(([k,v])=>`<option value="${k}" ${s.split[i]===k?'selected':''}>${v}</option>`).join('')}</select><label class="ab"><input id="ab-${i}" type="checkbox" data-abd="${i}" ${s.absDays.includes(i)?'checked':''} style="width:auto">abs</label></div>`).join('')}
-   <div class="hint">Restart week (5 to 8 Nov): Push, Pull, Legs + abs, rest.</div><label>cut start<input id="startDate" type="date" value="${s.startDate}"></label></div>
+  <h2>Training</h2><div class="card set"><div class="two"><label>workouts a week<input id="t-wk" data-t="wk" type="number" step="1" min="1" max="7" value="${T.wk||5}"></label><label>abs a week<input id="t-abs" data-t="abs" type="number" step="1" min="0" max="7" value="${T.abs||2}"></label></div>
+   <div class="hint" style="margin:0">Any day, any split. A workout only becomes required when the week can't reach the target without it.</div><label>cut start<input id="startDate" type="date" value="${s.startDate}"></label></div>
+  <h2>Coach</h2><div class="card set"><label>WhatsApp number<input id="cphone" type="tel" value="${esc(s.coach?.phone||'')}" placeholder="03xx xxxxxxx"></label><label>message ({kg} and {n} fill in)<textarea id="ctext">${esc(s.coach?.text||COACH_TXT)}</textarea></label>
+   <div class="hint" style="margin:0">Two red days in a row puts a one-tap button on Today. The number stays on this phone.</div></div>
   <h2>Thursday measurements</h2><div class="card set">${s.measures.map(m=>`<div class="split" data-mid="${m.id}" style="grid-template-columns:1fr 92px 34px"><input id="mn-${m.id}" data-mf="name" value="${esc(m.name)}"><button class="sm" data-mdir="${m.id}">${m.dir==='up'?'goal: grow':'goal: shrink'}</button><button class="x" data-mdel="${m.id}" aria-label="Remove ${esc(m.name)}">×</button></div>`).join('')}
    <div class="btns"><button class="btn" data-madd>Add measurement</button></div><label>check-in deadline<input id="ciby" type="time" value="${s.checkinBy}"></label></div>
   <h2>Backup <em>data lives on this phone only</em></h2><div class="card set"><div class="btns"><button class="btn on" data-copy>Copy backup</button></div>
@@ -673,25 +768,25 @@ function settings(){const s=S.settings,T=s.targets;let h=`<div class="title">Set
   app.innerHTML=h}
 
 
-/* ---------- journey: torso that slims while six abs fill. Full at a 75 average over the 95 cut days ---------- */
-const JEND='2027-02-07',JFULL=diff('2026-11-05',JEND)+1,RDAYS=diff(RAMADAN,END)+1;let face=0;
+/* ---------- journey: torso that slims while six abs fill. Full at a 75 average over the 90 days from 10 Nov to 7 Feb ---------- */
+const JEND='2027-02-07',JF=()=>diff(S.settings.startDate,JEND)+1,RDAYS=diff(RAMADAN,END)+1;let face=0;
 function jSum(a,b,upto){let s=0;for(let k=a;k<=b&&k<=upto;k=add(k,1))if(peek(k))s+=score(k).f;return s}
-function jT(upto){return{c:Math.min(1,jSum(S.settings.startDate,JEND,upto)/(JFULL*.75)),r:Math.min(1,jSum(RAMADAN,END,upto)/(RDAYS*.75)),upto}}
+function jT(upto){return{c:Math.min(1,jSum(S.settings.startDate,JEND,upto)/(JF()*.75)),r:Math.min(1,jSum(RAMADAN,END,upto)/(RDAYS*.75)),upto}}
 function spl(p){const n=p.length,g=i=>p[Math.max(0,Math.min(n-1,i))];let d='';for(let i=0;i<n-1;i++){const a=g(i-1),b=g(i),c=g(i+1),e=g(i+2);d+=` C${(b[0]+(c[0]-a[0])/6).toFixed(1)} ${(b[1]+(c[1]-a[1])/6).toFixed(1)} ${(c[0]-(e[0]-b[0])/6).toFixed(1)} ${(c[1]-(e[1]-b[1])/6).toFixed(1)} ${c[0].toFixed(1)} ${c[1].toFixed(1)}`}return d}
 function torso(t){const C=190,f=1-t,W=58+16*f,L=15*f,B=312,ln='#6A6964';
   const side=s=>[[C+s*20,22],[C+s*21,42],[C+s*62,58],[C+s*100,70],[C+s*116,96],[C+s*110,124],[C+s*86,140],[C+s*84,176],[C+s*(75+3*f),222],[C+s*W,262],[C+s*(W+L),294],[C+s*(W+2),B]];
-  const l=side(-1),r=side(1).reverse();let g=`<path d="M${l[0][0]} ${l[0][1]}${spl(l)} L${r[0][0]} ${r[0][1]}${spl(r)}Z" fill="#2A2A2E" stroke="#5F5E5A"/>`,df='';
+  const l=side(-1),r=side(1).reverse();let g=`<path d="M${l[0][0]} ${l[0][1]}${spl(l)} L${r[0][0]} ${r[0][1]}${spl(r)}Z" fill="url(#bod)" stroke="#5F5E5A"/>`,df='<linearGradient id="molt" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#E8437A"/><stop offset=".5" stop-color="#FF6B35"/><stop offset="1" stop-color="#FFC24A"/></linearGradient><radialGradient id="bod" cx=".5" cy=".38" r=".75"><stop offset="0" stop-color="#3B3B42"/><stop offset="1" stop-color="#202024"/></radialGradient>';
   [-1,1].forEach(s=>{const x=k=>C+s*k;
    g+=`<path d="M${x(98)} 74C${x(92)} 96 ${x(94)} 116 ${x(104)} 128" fill="none" stroke="${ln}" opacity="${(.4+.6*t).toFixed(2)}"/><path d="M${x(86)} 140C${x(80)} ${170+12*f} ${x(40)} ${182+12*f} ${x(5)} ${166+8*f}" fill="none" stroke="${ln}" stroke-width="1.6"/><path d="M${x(W-2)} 232C${x(W-6)} 252 ${x(W-6)} 272 ${x(W-10)} 296" fill="none" stroke="${ln}" opacity="${Math.max(0,t*1.5-.5).toFixed(2)}"/>`;
    [[0,186,24,28],[1,218,26,30],[2,252,27,32]].forEach(([q,y,w,h])=>{y+=5*f;const lo=s>0?C+4:C-4-w,hi=lo+w,i=q*2+(s>0?1:0),fl=Math.max(0,Math.min(1,t*6-i));
     const p=`M${lo+7} ${y}L${hi-7} ${y}Q${hi} ${y} ${hi} ${y+8}L${hi} ${y+h-8}Q${hi} ${y+h} ${hi-7} ${y+h}L${lo+7} ${y+h}Q${lo} ${y+h} ${lo} ${y+h-8}L${lo} ${y+8}Q${lo} ${y} ${lo+7} ${y}Z`;
     df+=`<clipPath id="jab${i}"><path d="${p}"/></clipPath>`;g+=`<path d="${p}" fill="#252528" stroke="${ln}" opacity="${(.3+.7*t).toFixed(2)}"/>`;
-    if(fl>0)g+=`<rect clip-path="url(#jab${i})" x="${lo-2}" y="${(y+h*(1-fl)).toFixed(1)}" width="${w+4}" height="${(h*fl+1).toFixed(1)}" fill="${fl>=1?'#FF6B35':'#FFB08A'}"/>`})});
-  g+=`<ellipse cx="${C}" cy="${268+4*f}" rx="${(58*f+1).toFixed(1)}" ry="${(26*f+1).toFixed(1)}" fill="#2A2A2E" opacity="${(.85*f).toFixed(2)}"/><ellipse cx="${C}" cy="${296+3*f}" rx="3" ry="4.5" fill="#141416"/><rect x="${C-W-4}" y="${B-2}" width="${2*W+8}" height="30" rx="4" fill="#141416" stroke="${ln}"/>`;
+    if(fl>=1)g+=`<path class="abf" d="${p}" fill="url(#molt)"/>`;else if(fl>0)g+=`<g clip-path="url(#jab${i})"><path class="wv" d="M${lo-16} ${(y+h*(1-fl)+1.5).toFixed(1)}${'q3.5 -3 7 0t7 0'.repeat(5)}V${y+h+2}H${lo-16}Z" fill="url(#molt)" opacity=".9"/></g>`})});
+  g+=`<ellipse cx="${C}" cy="${268+4*f}" rx="${(58*f+1).toFixed(1)}" ry="${(26*f+1).toFixed(1)}" fill="#303036" opacity="${(.85*f).toFixed(2)}"/><ellipse cx="${C}" cy="${296+3*f}" rx="3" ry="4.5" fill="#141416"/><rect x="${C-W-4}" y="${B-2}" width="${2*W+8}" height="30" rx="4" fill="#141416" stroke="${ln}"/>`;
   return`<svg class="torso" viewBox="60 10 260 335" aria-hidden="true"><defs>${df}</defs>${g}</svg>`}
 function crescent(r){return`<svg viewBox="0 0 60 60" width="46" height="46" aria-hidden="true" style="position:absolute;right:10px;top:4px"><defs><clipPath id="cres"><path d="M38 6a24 24 0 1 0 16 38A20 20 0 1 1 38 6z"/></clipPath></defs><path d="M38 6a24 24 0 1 0 16 38A20 20 0 1 1 38 6z" fill="#2A2A2E" stroke="#5F5E5A"/><rect clip-path="url(#cres)" x="0" y="${(60*(1-r)).toFixed(1)}" width="60" height="60" fill="#FFC24A"/></svg>`}
-function jFace(j){const T=tk(),dn=Math.max(0,Math.min(JFULL,diff(S.settings.startDate,j.upto<T?j.upto:T)+1)),ab=Math.min(6,Math.floor(j.c*6)),pc=Math.round((j.c*6-ab)*100),ram=T>=RAMADAN;
-  const line=j.c>=1?'all six filled':S.settings.startDate>T?`starts ${fd(S.settings.startDate)}`:`day ${dn} of ${JFULL}, ab ${ab+1} at ${pc}%`;
+function jFace(j){const T=tk(),dn=Math.max(0,Math.min(JF(),diff(S.settings.startDate,j.upto<T?j.upto:T)+1)),ab=Math.min(6,Math.floor(j.c*6)),pc=Math.round((j.c*6-ab)*100),ram=T>=RAMADAN;
+  const line=j.c>=1?'all six filled':S.settings.startDate>T?`starts ${fd(S.settings.startDate)}`:`day ${dn} of ${JF()}, ab ${ab+1} at ${pc}%`;
   return`<span class="jk">${ram?'RAMADAN PHASE':'THE JOURNEY'}</span><span class="jt" id="jline">${line}${ram?`, Ramadan ${Math.round(j.r*100)}%`:''}</span><div style="position:relative">${torso(j.c)}${ram?crescent(j.r):''}</div>`}
 function setFace(i){face=i;const tr=document.getElementById('track');if(tr)tr.style.transform=`translateX(${-50*i}%)`;document.querySelectorAll('.dots button').forEach(b=>b.classList.toggle('on',+b.dataset.face===i))}
 /* first open of the day: show the journey, pour yesterday's points in, then slide to today */
@@ -705,7 +800,7 @@ app.addEventListener('pointerup',e=>{if(px==null)return;const dx=e.clientX-px;px
 setInterval(()=>{if(tab==='today'&&sheet.hidden&&!document.activeElement?.matches('input'))render()},30000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&tab==='today'){vk=tk();render()}});
 addEventListener('resize',()=>{if(tab==='today')fxBind()});
-load();render();reveal();
+load();skyInit();render();reveal();
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
 </script>
-
 </body></html>
